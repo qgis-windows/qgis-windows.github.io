@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QGIS for Windows — Safe & Free Download (Unofficial)</title>
+  <meta name="description" content="Get QGIS for Windows safely via the official OSGeo4W Network Installer. Clear steps, system requirements, and troubleshooting. Unofficial guide with official links." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://qgis-windows.github.io/" />
+  <meta property="og:title" content="QGIS for Windows — Safe & Free Download" />
+  <meta property="og:description" content="Official OSGeo4W link, step‑by‑step install guide, version advice, and troubleshooting — all in one place." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://qgis-windows.github.io/" />
+  <meta property="og:image" content="https://qgis-windows.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="QGIS for Windows — Safe & Free Download" />
+  <meta name="twitter:description" content="Official OSGeo4W link, install steps, version tips, and fixes." />
+  <meta name="twitter:image" content="https://qgis-windows.github.io/og-image.png" />
+  <meta name="theme-color" content="#589632" />
+  <meta name="last-modified" id="meta-lastmod" content="" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <style>
+    :root {
+      --qgis-green: #589632;
+      --qgis-green-900: #3b6a23;
+      --accent-orange: #F0A202;
+      --text: #1E2A2F;
+      --muted: #5b6b73;
+      --bg: #F6F8F9;
+      --white: #ffffff;
+      --focus: #0a84ff;
+      --ring: rgba(10,132,255,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; line-height: 1.6; }
+    a { color: var(--qgis-green-900); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1120px, 100%); margin: 0 auto; padding: 0 16px; }
+
+    /* Accessibility */
+    :focus { outline: 2px solid var(--focus); outline-offset: 2px; box-shadow: 0 0 0 4px var(--ring); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+    header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid #e6eaed; }
+    .nav { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 12px 0; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; color: var(--qgis-green-900); }
+    .brand svg { width: 28px; height: 28px; }
+    nav ul { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; padding: 0; margin: 0; list-style: none; }
+    nav a { display: inline-block; padding: 8px 10px; border-radius: 6px; }
+    nav a:hover { background: #eef5f0; text-decoration: none; }
+    .burger { display: none; border: 1px solid #d5dadd; padding: 8px 10px; border-radius: 6px; background: var(--white); }
+
+    .hero { background: linear-gradient(180deg, #ffffff 0%, #f2f7f3 100%); border-bottom: 1px solid #e6eaed; }
+    .hero-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; padding: 40px 0; align-items: center; }
+    .hero h1 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 40px); line-height: 1.15; color: var(--qgis-green-900); }
+    .hero p.lead { font-size: clamp(16px, 2.2vw, 18px); color: var(--muted); margin: 0 0 18px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 6px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 10px; border: 2px solid transparent; font-weight: 700; cursor: pointer; text-decoration: none; }
+    .btn-primary { background: var(--accent-orange); color: #1b1200; }
+    .btn-primary:hover { filter: brightness(0.97); text-decoration: none; }
+    .btn-ghost { background: #ffffff; border-color: #d6e2d8; color: var(--qgis-green-900); }
+    .btn-ghost:hover { background: #f0f7f1; text-decoration: none; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; background: #eef7ee; color: var(--qgis-green-900); padding: 6px 10px; border-radius: 999px; font-size: 14px; font-weight: 600; }
+
+    .quick-answers, .why, .howto, .faq, .sitemap { padding: 28px 0; }
+    .section-title { font-size: 22px; color: var(--qgis-green-900); margin: 0 0 16px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .card { background: #ffffff; border: 1px solid #e6eaed; border-radius: 14px; padding: 16px; }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); }
+    .list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; padding: 0; margin: 0; list-style: none; }
+    .list li { display: flex; align-items: flex-start; gap: 8px; }
+
+    .faq details { background: #ffffff; border: 1px solid #e6eaed; border-radius: 12px; padding: 12px 14px; }
+    .faq details summary { font-weight: 700; cursor: pointer; }
+    .faq details + details { margin-top: 10px; }
+
+    .notice { display: flex; gap: 8px; align-items: flex-start; background: #fff7ea; border: 1px solid #ffe0a8; color: #7a4d00; padding: 10px 12px; border-radius: 10px; }
+
+    footer { border-top: 1px solid #e6eaed; background: #ffffff; margin-top: 16px; }
+    .footer-inner { padding: 18px 0; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+    .footer-nav { display: flex; gap: 12px; flex-wrap: wrap; }
+    .lastmod { color: var(--muted); font-size: 14px; }
+
+    /* Cookie banner */
+    .cookie { position: fixed; z-index: 200; right: 16px; bottom: 16px; max-width: 520px; background: #ffffff; border: 1px solid #e6eaed; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); padding: 14px; }
+    .cookie h3 { margin: 0 0 6px; font-size: 16px; color: var(--qgis-green-900); }
+    .cookie p { margin: 0 0 12px; color: var(--muted); }
+    .cookie .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .cookie .btn { padding: 10px 12px; }
+    .cookie [data-close] { margin-left: auto; background: #f6f8f9; border-color: #e6eaed; color: #44525a; }
+    .cookie .accept { background: var(--qgis-green); color: #fff; }
+    .cookie .decline { background: #ffffff; border-color: #e6eaed; color: #374047; }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 720px) {
+      .burger { display: inline-flex; }
+      nav ul { display: none; }
+      nav ul.open { display: grid; grid-template-columns: 1fr; gap: 6px; padding-top: 10px; }
+      .list { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- GA4 base + Consent Mode (default denied) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('consent', 'default', { 'analytics_storage': 'denied' });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF4WXW2W3V"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-SF4WXW2W3V');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://qgis-windows.github.io/#website",
+        "url": "https://qgis-windows.github.io/",
+        "name": "QGIS for Windows (Unofficial)",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://qgis-windows.github.io/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://qgis-windows.github.io/#webpage",
+        "url": "https://qgis-windows.github.io/",
+        "name": "QGIS for Windows — Safe & Free Download (Unofficial)",
+        "isPartOf": { "@id": "https://qgis-windows.github.io/#website" },
+        "about": { "@id": "https://qgis-windows.github.io/#software" },
+        "description": "Get QGIS for Windows safely via the official OSGeo4W Network Installer. Clear steps, version tips, and troubleshooting.",
+        "inLanguage": "en-US",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem", "position": 1,
+            "name": "Home", "item": "https://qgis-windows.github.io/"
+          }]
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://qgis-windows.github.io/#software",
+        "name": "QGIS for Windows",
+        "applicationCategory": ["BusinessApplication", "GeographicInformationSystem", "GIS Application"],
+        "operatingSystem": "Windows 10/11 (64-bit)",
+        "softwareRequirements": [
+          "x64 Windows 10/11",
+          "Administrator privileges for installation"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "downloadUrl": "https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe",
+        "url": "https://qgis-windows.github.io/",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Unofficial resource linking to official QGIS/OSGeo downloads"
+        }
+      },
+      {
+        "@type": "HowTo",
+        "name": "Install QGIS on Windows via OSGeo4W (Quick Steps)",
+        "description": "Quick installation steps for QGIS on Windows using the official OSGeo4W Network Installer.",
+        "tool": [{"@type":"HowToTool","name":"OSGeo4W Network Installer"}],
+        "step": [
+          {"@type":"HowToStep","name":"Download the OSGeo4W installer","url":"https://qgis-windows.github.io/","itemListElement":[{"@type":"HowToDirection","text":"Use the official link on this page to download osgeo4w-setup.exe."}]},
+          {"@type":"HowToStep","name":"Run as Administrator","itemListElement":[{"@type":"HowToDirection","text":"Right-click the installer and choose ‘Run as administrator’."}]},
+          {"@type":"HowToStep","name":"Choose QGIS","itemListElement":[{"@type":"HowToDirection","text":"In the OSGeo4W window, select QGIS (LTR for stability or Latest for new features)."}]},
+          {"@type":"HowToStep","name":"Finish setup","itemListElement":[{"@type":"HowToDirection","text":"Complete the wizard and launch QGIS from the Start Menu."}]}
+        ]
+      },
+      {
+        "@type":"FAQPage",
+        "mainEntity":[
+          {"@type":"Question","name":"Is this the official QGIS download for Windows?","acceptedAnswer":{"@type":"Answer","text":"This site is unofficial but links directly to the official OSGeo4W Network Installer hosted by OSGeo (download.osgeo.org)."}},
+          {"@type":"Question","name":"Which version should I choose: LTR or Latest?","acceptedAnswer":{"@type":"Answer","text":"Choose LTR for stability in production and training; choose Latest to try the newest features. You can switch later via OSGeo4W."}},
+          {"@type":"Question","name":"Is the installer safe?","acceptedAnswer":{"@type":"Answer","text":"Yes, the download link points to OSGeo's official server. Always verify the source and run as Administrator on Windows."}}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="sr-only" href="#main">Skip to content</a>
+
+  <!-- SVG Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden">
+    <symbol id="i-download" viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2Zm7-3a1 1 0 0 0 1-1v-6h2.59a1 1 0 0 0 .7-1.71l-4.59-4.59a1 1 0 0 0-1.41 0L6.7 8.29A1 1 0 0 0 7.41 10H10v6a1 1 0 0 0 1 1h1Z"/></symbol>
+    <symbol id="i-windows" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5L11 4v7H3V5.5Zm0 12V13h8v7l-8-1.5Zm10-14.2L21 3v8h-8V3.3Zm8 17.4l-8 1.2V13h8v7.7Z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm0 5a1.25 1.25 0 1 1 0 2.5A1.25 1.25 0 0 1 12 7Zm1.5 10h-3v-1.5h1V12h-1V10.5h2a1 1 0 0 1 1 1V15.5h1V17Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="currentColor"><path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 5.71 12 12l6.3 6.29-1.41 1.42L10.59 13.4l-6.3 6.3-1.41-1.42L9.17 12 2.88 5.71 4.3 4.29 10.59 10.6l6.3-6.3Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4 10.59 5.41 16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8Z"/></symbol>
+  </svg>
+
+  <header>
+    <div class="container nav" role="navigation" aria-label="Main">
+      <a href="/" class="brand" aria-label="Home">
+        <svg aria-hidden="true"><use href="#i-windows"></use></svg>
+        <span>QGIS for Windows</span>
+      </a>
+      <button class="burger" aria-controls="mainmenu" aria-expanded="false" id="burger"><svg width="20" height="20" aria-hidden="true"><use href="#i-menu"></use></svg><span class="sr-only">Menu</span></button>
+      <nav>
+        <ul id="mainmenu">
+          <li><a href="/install-windows.html">Install Guide</a></li>
+          <li><a href="/system-requirements.html">System Requirements</a></li>
+          <li><a href="/ltr-vs-latest.html">LTR vs Latest</a></li>
+          <li><a href="/msi-vs-osgeo4w.html">MSI vs OSGeo4W</a></li>
+          <li><a href="/troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="/plugins-windows.html">Plugins</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="pill" title="Official link via OSGeo">
+            <svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg>
+            Official OSGeo link
+          </span>
+          <h1>QGIS for Windows — Safe & Free Download</h1>
+          <p class="lead">Download QGIS for Windows using the official OSGeo4W Network Installer. Clear steps, version guidance (LTR vs Latest), and quick fixes bundled into one lightweight page.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" id="primary-download" href="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe" data-download="true" data-file-name="osgeo4w-setup.exe" data-file-url="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe" aria-label="Download OSGeo4W Network Installer (official)">
+              <svg width="20" height="20" aria-hidden="true"><use href="#i-download"></use></svg>
+              Download for Windows (OSGeo4W)
+            </a>
+            <a class="btn btn-ghost" href="/install-windows.html">
+              <svg width="20" height="20" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              Step‑by‑Step Install Guide
+            </a>
+          </div>
+          <div class="notice" role="note" aria-label="Safety note">
+            <svg width="18" height="18" aria-hidden="true"><use href="#i-info"></use></svg>
+            <div>
+              <strong>Unofficial site.</strong> We link directly to OSGeo's official servers (<a href="https://download.osgeo.org/" target="_blank" rel="noopener">download.osgeo.org</a>). QGIS is free and open‑source.
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <h3>Quick answers</h3>
+            <ul class="list">
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg> 64‑bit Windows 10/11 recommended</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg> Choose <strong>LTR</strong> for stability, <strong>Latest</strong> for new features</li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg> Run installer as <strong>Administrator</strong></li>
+              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg> Fixes for common errors in <a href="/troubleshooting.html">Troubleshooting</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="why">
+      <div class="container">
+        <h2 class="section-title">Why this download?</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Official & Safe</h3>
+            <p>Direct link to OSGeo4W Network Installer hosted by OSGeo. No bundled extras.</p>
+          </div>
+          <div class="card">
+            <h3>Up‑to‑date</h3>
+            <p>Choose LTR or Latest during setup. Update later via OSGeo4W when needed.</p>
+          </div>
+          <div class="card">
+            <h3>Flexible</h3>
+            <p>Install QGIS with optional components (GDAL, PROJ, plugins) using OSGeo4W.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="howto">
+      <div class="container">
+        <h2 class="section-title">3‑step install (OSGeo4W)</h2>
+        <ol class="list" style="list-style: none; counter-reset: c;">
+          <li style="counter-increment: c"><span class="pill" aria-hidden="true" style="background:#eef3ff;color:#0b3a7a">Step <span style="font-variant-numeric: tabular-nums;">1</span></span> Download <a href="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe" data-download="true" data-file-name="osgeo4w-setup.exe" data-file-url="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe">osgeo4w-setup.exe</a>.</li>
+          <li style="counter-increment: c"><span class="pill" aria-hidden="true" style="background:#eef3ff;color:#0b3a7a">Step <span style="font-variant-numeric: tabular-nums;">2</span></span> Right‑click → Run as Administrator. In OSGeo4W, pick <strong>QGIS</strong> (LTR or Latest).</li>
+          <li style="counter-increment: c"><span class="pill" aria-hidden="true" style="background:#eef3ff;color:#0b3a7a">Step <span style="font-variant-numeric: tabular-nums;">3</span></span> Finish wizard → launch QGIS from Start Menu. For details, see the <a href="/install-windows.html">Install Guide</a>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <details>
+          <summary>Is this the official Windows download?</summary>
+          <p>No official affiliation. This page links directly to OSGeo's server (<code>download.osgeo.org</code>) which hosts the official OSGeo4W installer for Windows.</p>
+        </details>
+        <details>
+          <summary>LTR vs Latest — which one should I choose?</summary>
+          <p>Pick <strong>LTR</strong> for stability in production or training; pick <strong>Latest</strong> to try new features. You can switch later in OSGeo4W.</p>
+        </details>
+        <details>
+          <summary>Installer blocked by SmartScreen or antivirus?</summary>
+          <p>Verify the source (OSGeo), run as Administrator, and temporarily allow if your AV flags a false positive. See <a href="/troubleshooting.html">Troubleshooting</a> for quick fixes.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="sitemap" aria-label="Site map">
+      <div class="container">
+        <h2 class="section-title">Site map</h2>
+        <ul class="list">
+          <li><a href="/index.html">Home (Download)</a></li>
+          <li><a href="/install-windows.html">Install QGIS on Windows</a></li>
+          <li><a href="/system-requirements.html">System Requirements & Performance</a></li>
+          <li><a href="/ltr-vs-latest.html">QGIS LTR vs Latest</a></li>
+          <li><a href="/msi-vs-osgeo4w.html">QGIS MSI vs OSGeo4W</a></li>
+          <li><a href="/troubleshooting.html">Fix Common Install Errors</a></li>
+          <li><a href="/plugins-windows.html">Beginner‑Friendly Plugins</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="lastmod" aria-live="polite">Last updated: <time id="lastmod" datetime=""></time></div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/install-windows.html">Install</a>
+        <a href="/system-requirements.html">Requirements</a>
+        <a href="/ltr-vs-latest.html">Versions</a>
+        <a href="/msi-vs-osgeo4w.html">Installers</a>
+        <a href="/troubleshooting.html">Troubleshooting</a>
+        <a href="/plugins-windows.html">Plugins</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Cookie banner -->
+  <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
+    <button class="btn" data-close aria-label="Close cookie banner"><svg width="18" height="18" aria-hidden="true"><use href="#i-close"></use></svg></button>
+    <h3>Cookies & analytics</h3>
+    <p>We use Google Analytics (GA4) to improve this site. You can accept or decline analytics cookies. The download link remains available either way.</p>
+    <div class="row">
+      <button class="btn accept" id="cookie-accept">Accept</button>
+      <button class="btn decline" id="cookie-decline">Decline</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const $ = (sel, ctx=document) => ctx.querySelector(sel);
+      const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+      // Mobile menu
+      const burger = $('#burger');
+      const menu = $('#mainmenu');
+      if (burger && menu) {
+        burger.addEventListener('click', () => {
+          menu.classList.toggle('open');
+          const expanded = burger.getAttribute('aria-expanded') === 'true';
+          burger.setAttribute('aria-expanded', String(!expanded));
+        });
+      }
+
+      // Last modified
+      const last = new Date(document.lastModified);
+      const lastISO = last.toISOString();
+      const lastHuman = last.toLocaleString(undefined, { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+      const lastEl = $('#lastmod');
+      const meta = $('#meta-lastmod');
+      if (lastEl) { lastEl.textContent = lastHuman; lastEl.setAttribute('datetime', lastISO); }
+      if (meta) { meta.setAttribute('content', lastISO); }
+
+      // Cookie consent
+      const COOKIE_KEY = 'ga_consent_v1';
+      const state = localStorage.getItem(COOKIE_KEY);
+      const banner = $('#cookie');
+      const acceptBtn = $('#cookie-accept');
+      const declineBtn = $('#cookie-decline');
+      const closeBtn = banner ? banner.querySelector('[data-close]') : null;
+
+      function setConsent(granted) {
+        gtag('consent', 'update', { 'analytics_storage': granted ? 'granted' : 'denied' });
+        localStorage.setItem(COOKIE_KEY, granted ? 'accepted' : 'declined');
+      }
+
+      function ensureBanner() {
+        if (!banner) return;
+        if (!state) {
+          banner.hidden = false;
+        } else {
+          // Apply remembered choice
+          setConsent(state === 'accepted');
+        }
+      }
+
+      ensureBanner();
+
+      acceptBtn && acceptBtn.addEventListener('click', () => {
+        setConsent(true);
+        banner.hidden = true;
+      });
+      declineBtn && declineBtn.addEventListener('click', () => {
+        setConsent(false);
+        banner.hidden = true;
+      });
+      closeBtn && closeBtn.addEventListener('click', () => {
+        // Treat close as decline until explicit consent
+        setConsent(false);
+        banner.hidden = true;
+      });
+
+      // Download tracking — only fires if consent granted
+      function canTrack() {
+        try { return localStorage.getItem(COOKIE_KEY) === 'accepted'; } catch(e) { return false; }
+      }
+      function trackDownload(name, url) {
+        if (!canTrack()) return;
+        gtag('event', 'file_download', {
+          event_category: 'downloads',
+          event_label: name,
+          file_url: url
+        });
+      }
+
+      $$('a[data-download="true"]').forEach(a => {
+        a.addEventListener('click', () => {
+          const name = a.getAttribute('data-file-name') || 'download.file';
+          const url = a.getAttribute('data-file-url') || a.href;
+          trackDownload(name, url);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

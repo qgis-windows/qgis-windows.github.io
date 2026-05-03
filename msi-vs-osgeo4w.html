@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QGIS MSI vs OSGeo4W on Windows — Which Installer Is Better?</title>
+  <meta name="description" content="Compare QGIS Standalone MSI vs OSGeo4W Network Installer on Windows. Pros, cons, when to choose each, and how to switch. Official OSGeo4W download link included." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://qgis-windows.github.io/msi-vs-osgeo4w.html" />
+  <meta property="og:title" content="QGIS MSI vs OSGeo4W on Windows — Which Installer Is Better?" />
+  <meta property="og:description" content="Pick the right QGIS installer for Windows: Standalone MSI or OSGeo4W. See differences and best practices." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://qgis-windows.github.io/msi-vs-osgeo4w.html" />
+  <meta property="og:image" content="https://qgis-windows.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="QGIS MSI vs OSGeo4W on Windows — Which Installer Is Better?" />
+  <meta name="twitter:description" content="Compare MSI and OSGeo4W approaches for installing QGIS on Windows." />
+  <meta name="twitter:image" content="https://qgis-windows.github.io/og-image.png" />
+  <meta name="theme-color" content="#589632" />
+  <meta name="last-modified" id="meta-lastmod" content="" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <style>
+    :root {
+      --qgis-green: #589632;
+      --qgis-green-900: #3b6a23;
+      --accent-orange: #F0A202;
+      --text: #1E2A2F;
+      --muted: #5b6b73;
+      --bg: #F6F8F9;
+      --white: #ffffff;
+      --focus: #0a84ff;
+      --ring: rgba(10,132,255,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; line-height: 1.6; }
+    a { color: var(--qgis-green-900); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { width: min(1120px, 100%); margin: 0 auto; padding: 0 16px; }
+
+    :focus { outline: 2px solid var(--focus); outline-offset: 2px; box-shadow: 0 0 0 4px var(--ring); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+    header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid #e6eaed; }
+    .nav { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 12px 0; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; color: var(--qgis-green-900); }
+    .brand svg { width: 28px; height: 28px; }
+    nav ul { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; padding: 0; margin: 0; list-style: none; }
+    nav a { display: inline-block; padding: 8px 10px; border-radius: 6px; }
+    nav a:hover { background: #eef5f0; text-decoration: none; }
+    .burger { display: none; border: 1px solid #d5dadd; padding: 8px 10px; border-radius: 6px; background: var(--white); }
+
+    .hero { background: linear-gradient(180deg, #ffffff 0%, #f2f7f3 100%); border-bottom: 1px solid #e6eaed; }
+    .hero-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; padding: 40px 0; align-items: center; }
+    .hero h1 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 40px); line-height: 1.15; color: var(--qgis-green-900); }
+    .hero p.lead { font-size: clamp(16px, 2.2vw, 18px); color: var(--muted); margin: 0 0 18px; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 6px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 10px; border: 2px solid transparent; font-weight: 700; cursor: pointer; text-decoration: none; }
+    .btn-primary { background: var(--accent-orange); color: #1b1200; }
+    .btn-primary:hover { filter: brightness(0.97); text-decoration: none; }
+    .btn-ghost { background: #ffffff; border-color: #d6e2d8; color: var(--qgis-green-900); }
+    .btn-ghost:hover { background: #f0f7f1; text-decoration: none; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; background: #eef7ee; color: var(--qgis-green-900); padding: 6px 10px; border-radius: 999px; font-size: 14px; font-weight: 600; }
+
+    .section { padding: 28px 0; }
+    .section-title { font-size: 22px; color: var(--qgis-green-900); margin: 0 0 16px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .card { background: #ffffff; border: 1px solid #e6eaed; border-radius: 14px; padding: 16px; }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); }
+    .list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; padding: 0; margin: 0; list-style: none; }
+    .list li { display: flex; align-items: flex-start; gap: 8px; }
+    .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+
+    footer { border-top: 1px solid #e6eaed; background: #ffffff; margin-top: 16px; }
+    .footer-inner { padding: 18px 0; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+    .footer-nav { display: flex; gap: 12px; flex-wrap: wrap; }
+    .lastmod { color: var(--muted); font-size: 14px; }
+
+    .cookie { position: fixed; z-index: 200; right: 16px; bottom: 16px; max-width: 520px; background: #ffffff; border: 1px solid #e6eaed; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); padding: 14px; }
+    .cookie h3 { margin: 0 0 6px; font-size: 16px; color: var(--qgis-green-900); }
+    .cookie p { margin: 0 0 12px; color: var(--muted); }
+    .cookie .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .cookie .btn { padding: 10px 12px; }
+    .cookie [data-close] { margin-left: auto; background: #f6f8f9; border-color: #e6eaed; color: #44525a; }
+    .cookie .accept { background: var(--qgis-green); color: #fff; }
+    .cookie .decline { background: #ffffff; border-color: #e6eaed; color: #374047; }
+
+    @media (max-width: 980px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .cols { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .burger { display: inline-flex; }
+      nav ul { display: none; }
+      nav ul.open { display: grid; grid-template-columns: 1fr; gap: 6px; padding-top: 10px; }
+      .list { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- GA4 base + Consent Mode (default denied) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('consent', 'default', { 'analytics_storage': 'denied' });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF4WXW2W3V"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-SF4WXW2W3V');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://qgis-windows.github.io/msi-vs-osgeo4w.html#webpage",
+        "url": "https://qgis-windows.github.io/msi-vs-osgeo4w.html",
+        "name": "QGIS MSI vs OSGeo4W on Windows — Which Installer Is Better?",
+        "isPartOf": { "@id": "https://qgis-windows.github.io/#website" },
+        "about": { "@id": "https://qgis-windows.github.io/#software" },
+        "description": "Comparison of QGIS Standalone MSI and OSGeo4W Network Installer for Windows with scenarios and best practices.",
+        "inLanguage": "en-US",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type":"ListItem","position":1,"name":"Home","item":"https://qgis-windows.github.io/"},
+            {"@type":"ListItem","position":2,"name":"MSI vs OSGeo4W","item":"https://qgis-windows.github.io/msi-vs-osgeo4w.html"}
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type":"Question","name":"What is the Standalone MSI?","acceptedAnswer":{"@type":"Answer","text":"A single MSI installer packaged for Windows that installs QGIS with common dependencies in one go. Simple but less flexible for updates and components."}},
+          {"@type":"Question","name":"What is OSGeo4W?","acceptedAnswer":{"@type":"Answer","text":"The official OSGeo package manager for Windows. It installs QGIS and related packages with fine‑grained control and easy updates."}},
+          {"@type":"Question","name":"Which should I choose for most users?","acceptedAnswer":{"@type":"Answer","text":"OSGeo4W is recommended for flexibility and updates. It lets you pick LTR or Latest, add components, and update cleanly later."}},
+          {"@type":"Question","name":"Can I switch from MSI to OSGeo4W?","acceptedAnswer":{"@type":"Answer","text":"Yes. Uninstall the MSI version first (clean uninstall), then install via OSGeo4W to avoid mixed dependencies."}}
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://qgis-windows.github.io/#software",
+        "name": "QGIS for Windows",
+        "applicationCategory": ["GeographicInformationSystem", "GIS Application"],
+        "operatingSystem": "Windows 10/11 (64-bit)",
+        "offers": {"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},
+        "downloadUrl": "https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe",
+        "url": "https://qgis-windows.github.io/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="sr-only" href="#main">Skip to content</a>
+
+  <!-- SVG Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden">
+    <symbol id="i-download" viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2Zm7-3a1 1 0 0 0 1-1v-6h2.59a1 1 0 0 0 .7-1.71l-4.59-4.59a1 1 0 0 0-1.41 0L6.7 8.29A1 1 0 0 0 7.41 10H10v6a1 1 0 0 0 1 1h1Z"/></symbol>
+    <symbol id="i-windows" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5L11 4v7H3V5.5Zm0 12V13h8v7l-8-1.5Zm10-14.2L21 3v8h-8V3.3Zm8 17.4l-8 1.2V13h8v7.7Z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm0 5a1.25 1.25 0 1 1 0 2.5A1.25 1.25 0 0 1 12 7Zm1.5 10h-3v-1.5h1V12h-1V10.5h2a1 1 0 0 1 1 1V15.5h1V17Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="currentColor"><path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 5.71 12 12l6.3 6.29-1.41 1.42L10.59 13.4l-6.3 6.3-1.41-1.42L9.17 12 2.88 5.71 4.3 4.29 10.59 10.6l6.3-6.3Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4 10.59 5.41 16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8Z"/></symbol>
+  </svg>
+
+  <header>
+    <div class="container nav" role="navigation" aria-label="Main">
+      <a href="/" class="brand" aria-label="Home">
+        <svg aria-hidden="true"><use href="#i-windows"></use></svg>
+        <span>QGIS for Windows</span>
+      </a>
+      <button class="burger" aria-controls="mainmenu" aria-expanded="false" id="burger"><svg width="20" height="20" aria-hidden="true"><use href="#i-menu"></use></svg><span class="sr-only">Menu</span></button>
+      <nav>
+        <ul id="mainmenu">
+          <li><a href="/install-windows.html">Install Guide</a></li>
+          <li><a href="/system-requirements.html">System Requirements</a></li>
+          <li><a href="/ltr-vs-latest.html">LTR vs Latest</a></li>
+          <li><a href="/msi-vs-osgeo4w.html" aria-current="page">MSI vs OSGeo4W</a></li>
+          <li><a href="/troubleshooting.html">Troubleshooting</a></li>
+          <li><a href="/plugins-windows.html">Plugins</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="pill">
+            <svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg>
+            Installer guidance
+          </span>
+          <h1>QGIS MSI vs OSGeo4W on Windows</h1>
+          <p class="lead">Not sure which installer to use? Here’s a practical comparison of the Standalone MSI and the OSGeo4W Network Installer — and why most users should choose OSGeo4W.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe" data-download="true" data-file-name="osgeo4w-setup.exe" data-file-url="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe" aria-label="Download OSGeo4W Network Installer (official)">
+              <svg width="20" height="20" aria-hidden="true"><use href="#i-download"></use></svg>
+              Download for Windows (OSGeo4W)
+            </a>
+            <a class="btn btn-ghost" href="/install-windows.html">
+              <svg width="20" height="20" aria-hidden="true"><use href="#i-arrow"></use></svg>
+              Follow the Install Guide
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <h3>TL;DR</h3>
+            <ul class="list">
+              <li><strong>OSGeo4W</strong>: flexible, updatable, choose LTR or Latest, add components</li>
+              <li><strong>Standalone MSI</strong>: simple one‑shot install, fewer knobs for updates</li>
+              <li>Don’t mix installers on one machine — pick one family</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Compare at a glance</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Standalone MSI</h3>
+            <p>Single MSI package that installs QGIS quickly with defaults. Easiest for a one‑off setup, but limited control over components and upgrades.</p>
+          </div>
+          <div class="card">
+            <h3>OSGeo4W Network Installer</h3>
+            <p>Official Windows package manager for QGIS and related tools. Choose LTR/Latest, add GRASS, GDAL, PROJ, and update cleanly later.</p>
+          </div>
+          <div class="card">
+            <h3>Best for most users</h3>
+            <p>We recommend OSGeo4W for ongoing work. It’s safer for updates and avoids dependency conflicts over time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container cols">
+        <div class="card">
+          <h3>Choose MSI if…</h3>
+          <ul class="list">
+            <li>You need a quick demo or temporary lab setup</li>
+            <li>You won’t update often and prefer a one‑time install</li>
+            <li>IT policy only allows MSI deployment via software center</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Choose OSGeo4W if…</h3>
+          <ul class="list">
+            <li>You want LTR vs Latest choice and clean updates</li>
+            <li>You need optional components (GRASS, GDAL tools, etc.)</li>
+            <li>You manage multiple machines or long‑term projects</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Switching from MSI to OSGeo4W</h2>
+        <div class="card">
+          <ol class="list" style="list-style: none;">
+            <li><strong>Back up</strong> your QGIS projects (.qgz) and profiles if customized.</li>
+            <li><strong>Uninstall</strong> the MSI version from Apps & Features. Remove leftover folders if any.</li>
+            <li><strong>Install</strong> via <a href="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe" data-download="true" data-file-name="osgeo4w-setup.exe" data-file-url="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe">OSGeo4W</a> — pick LTR or Latest and desired components.</li>
+            <li><strong>Update</strong> later by re‑running OSGeo4W. Avoid mixing installers going forward.</li>
+          </ol>
+        </div>
+        <p style="margin-top:12px">Need help with errors? See <a href="/troubleshooting.html">Troubleshooting</a>.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="FAQ">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <details>
+          <summary>Can I keep MSI and OSGeo4W together?</summary>
+          <p>It’s strongly discouraged. Mixed installers can lead to conflicting dependencies and PATH issues. Pick one installer family per machine.</p>
+        </details>
+        <details>
+          <summary>Will OSGeo4W auto‑update QGIS?</summary>
+          <p>You control updates by re‑running OSGeo4W. This ensures predictable upgrades when you’re ready.</p>
+        </details>
+        <details>
+          <summary>Are both installers official?</summary>
+          <p>Yes. Both are official distribution methods. We recommend OSGeo4W for its flexibility and maintainability.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="lastmod" aria-live="polite">Last updated: <time id="lastmod" datetime=""></time></div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/">Download</a>
+        <a href="/install-windows.html">Install</a>
+        <a href="/ltr-vs-latest.html">Versions</a>
+        <a href="/msi-vs-osgeo4w.html">Installers</a>
+        <a href="/troubleshooting.html">Troubleshooting</a>
+        <a href="/plugins-windows.html">Plugins</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Cookie banner -->
+  <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
+    <button class="btn" data-close aria-label="Close cookie banner"><svg width="18" height="18" aria-hidden="true"><use href="#i-close"></use></svg></button>
+    <h3>Cookies & analytics</h3>
+    <p>We use Google Analytics (GA4) to improve this site. You can accept or decline analytics cookies. The download link remains available either way.</p>
+    <div class="row">
+      <button class="btn accept" id="cookie-accept">Accept</button>
+      <button class="btn decline" id="cookie-decline">Decline</button>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const $ = (sel, ctx=document) => ctx.querySelector(sel);
+      const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+      // Mobile menu
+      const burger = $('#burger');
+      const menu = $('#mainmenu');
+      if (burger && menu) {
+        burger.addEventListener('click', () => {
+          menu.classList.toggle('open');
+          const expanded = burger.getAttribute('aria-expanded') === 'true';
+          burger.setAttribute('aria-expanded', String(!expanded));
+        });
+      }
+
+      // Last modified
+      const last = new Date(document.lastModified);
+      const lastISO = last.toISOString();
+      const lastHuman = last.toLocaleString(undefined, { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' });
+      const lastEl = $('#lastmod');
+      const meta = $('#meta-lastmod');
+      if (lastEl) { lastEl.textContent = lastHuman; lastEl.setAttribute('datetime', lastISO); }
+      if (meta) { meta.setAttribute('content', lastISO); }
+
+      // Cookie consent
+      const COOKIE_KEY = 'ga_consent_v1';
+      const state = localStorage.getItem(COOKIE_KEY);
+      const banner = $('#cookie');
+      const acceptBtn = $('#cookie-accept');
+      const declineBtn = $('#cookie-decline');
+      const closeBtn = banner ? banner.querySelector('[data-close]') : null;
+
+      function setConsent(granted) {
+        gtag('consent', 'update', { 'analytics_storage': granted ? 'granted' : 'denied' });
+        localStorage.setItem(COOKIE_KEY, granted ? 'accepted' : 'declined');
+      }
+
+      function ensureBanner() {
+        if (!banner) return;
+        if (!state) {
+          banner.hidden = false;
+        } else {
+          setConsent(state === 'accepted');
+        }
+      }
+
+      ensureBanner();
+
+      acceptBtn && acceptBtn.addEventListener('click', () => {
+        setConsent(true);
+        banner.hidden = true;
+      });
+      declineBtn && declineBtn.addEventListener('click', () => {
+        setConsent(false);
+        banner.hidden = true;
+      });
+      closeBtn && closeBtn.addEventListener('click', () => {
+        setConsent(false);
+        banner.hidden = true;
+      });
+
+      // Download tracking — only fires if consent granted
+      function canTrack() { try { return localStorage.getItem(COOKIE_KEY) === 'accepted'; } catch(e) { return false; } }
+      function trackDownload(name, url) {
+        if (!canTrack()) return;
+        gtag('event', 'file_download', {
+          event_category: 'downloads',
+          event_label: name,
+          file_url: url
+        });
+      }
+
+      $$('a[data-download="true"]').forEach(a => {
+        a.addEventListener('click', () => {
+          const name = a.getAttribute('data-file-name') || 'download.file';
+          const url = a.getAttribute('data-file-url') || a.href;
+          trackDownload(name, url);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

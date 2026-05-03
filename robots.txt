@@ -1,0 +1,8 @@
+# robots.txt for qgis-windows.github.io
+# Allow all bots to crawl the site. Links point to official OSGeo download and internal pages.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://qgis-windows.github.io/sitemap.xml
+Host: qgis-windows.github.io

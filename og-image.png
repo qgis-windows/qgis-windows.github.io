@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#5fa538"/>
+      <stop offset="1" stop-color="#589632"/>
+    </linearGradient>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+
+  <!-- Decorative windows mark -->
+  <g transform="translate(900,80)" fill="#ffffff" opacity="0.12">
+    <rect x="0" y="0" width="120" height="120" rx="8"/>
+    <rect x="140" y="0" width="120" height="120" rx="8"/>
+    <rect x="0" y="140" width="120" height="120" rx="8"/>
+    <rect x="140" y="140" width="120" height="120" rx="8"/>
+  </g>
+
+  <!-- Geopin accent -->
+  <g transform="translate(220,180)" filter="url(#s)">
+    <circle cx="0" cy="0" r="58" fill="#F0A202"/>
+    <circle cx="0" cy="0" r="22" fill="#ffffff"/>
+    <path d="M 0 58 C 24 90, 24 120, 0 152 C -24 120, -24 90, 0 58 Z" fill="#F0A202"/>
+  </g>
+
+  <!-- Title -->
+  <g font-family="Segoe UI, Ubuntu, Arial, sans-serif" fill="#ffffff">
+    <text x="600" y="300" text-anchor="middle" font-size="72" font-weight="800">QGIS for Windows</text>
+    <text x="600" y="360" text-anchor="middle" font-size="28" opacity="0.92">Safe download via official OSGeo4W Network Installer</text>
+  </g>
+
+  <!-- CTA tag -->
+  <g transform="translate(600,410)">
+    <rect x="-190" y="-30" width="380" height="60" rx="12" fill="#ffffff" opacity="0.14"/>
+    <text x="0" y="12" text-anchor="middle" font-size="26" font-weight="700" fill="#ffffff">Free • Open‑Source • Official Link</text>
+  </g>
+</svg>
