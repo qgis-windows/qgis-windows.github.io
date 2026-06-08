@@ -1,236 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Fix Common QGIS Install Errors on Windows — Troubleshooting Guide</title>
-  <meta name="description" content="Troubleshoot and fix common QGIS install and startup errors on Windows. Solutions for SmartScreen, missing dependencies, Python/GDAL issues and clean uninstall steps." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://qgis-windows.github.io/troubleshooting.html" />
-  <meta property="og:title" content="Fix Common QGIS Install Errors on Windows" />
-  <meta property="og:description" content="Troubleshooting guide for QGIS on Windows: installer blocked, missing DLLs, startup crashes and more." />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://qgis-windows.github.io/troubleshooting.html" />
-  <meta property="og:image" content="https://qgis-windows.github.io/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Fix Common QGIS Install Errors on Windows" />
-  <meta name="twitter:description" content="Troubleshooting QGIS installation and startup problems on Windows." />
-  <meta name="twitter:image" content="https://qgis-windows.github.io/og-image.png" />
-  <meta name="theme-color" content="#589632" />
-  <meta name="last-modified" id="meta-lastmod" content="" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <style>
-    :root{--qgis-green:#589632;--qgis-green-900:#3b6a23;--accent-orange:#F0A202;--text:#1E2A2F;--muted:#5b6b73;--bg:#F6F8F9;--white:#fff;--focus:#0a84ff;--ring:rgba(10,132,255,.35)}
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,\"Apple Color Emoji\",\"Segoe UI Emoji\";line-height:1.6}
-    a{color:var(--qgis-green-900);text-decoration:none}a:hover{text-decoration:underline}
-    .container{width:min(1120px,100%);margin:0 auto;padding:0 16px}
-    :focus{outline:2px solid var(--focus);outline-offset:2px;box-shadow:0 0 0 4px var(--ring)}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
-    header{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid #e6eaed}
-    .nav{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:12px 0}
-    .brand{display:inline-flex;align-items:center;gap:10px;font-weight:700;color:var(--qgis-green-900)}.brand svg{width:28px;height:28px}
-    nav ul{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end;padding:0;margin:0;list-style:none}
-    nav a{display:inline-block;padding:8px 10px;border-radius:6px}nav a:hover{background:#eef5f0}
-    .burger{display:none;border:1px solid #d5dadd;padding:8px 10px;border-radius:6px;background:var(--white)}
-    .hero{background:linear-gradient(180deg,#ffffff 0%,#f2f7f3 100%);border-bottom:1px solid #e6eaed}
-    .hero-inner{display:grid;grid-template-columns:1.1fr 0.9fr;gap:28px;padding:40px 0;align-items:center}
-    .hero h1{margin:0 0 12px;font-size:clamp(28px,4vw,40px);line-height:1.15;color:var(--qgis-green-900)}
-    .hero p.lead{font-size:clamp(16px,2.2vw,18px);color:var(--muted);margin:0 0 18px}
-    .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 6px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:10px;border:2px solid transparent;font-weight:700;cursor:pointer;text-decoration:none}
-    .btn-primary{background:var(--accent-orange);color:#1b1200}.btn-ghost{background:#fff;border-color:#d6e2d8;color:var(--qgis-green-900)}
-    .pill{display:inline-flex;align-items:center;gap:8px;background:#eef7ee;color:var(--qgis-green-900);padding:6px 10px;border-radius:999px;font-size:14px;font-weight:600}
-    .section{padding:28px 0}.section-title{font-size:22px;color:var(--qgis-green-900);margin:0 0 16px}
-    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .card{background:#fff;border:1px solid #e6eaed;border-radius:14px;padding:16px}.card h3{margin:0 0 8px;font-size:18px}.card p{margin:0;color:var(--muted)}
-    .faq details{background:#fff;border:1px solid #e6eaed;border-radius:12px;padding:12px 14px} .faq details summary{font-weight:700;cursor:pointer}
-    .notice{display:flex;gap:8px;align-items:flex-start;background:#fff7ea;border:1px solid #ffe0a8;color:#7a4d00;padding:10px 12px;border-radius:10px}
-    .kvs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-    footer{border-top:1px solid #e6eaed;background:#fff;margin-top:16px}
-    .footer-inner{padding:18px 0;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}.footer-nav{display:flex;gap:12px;flex-wrap:wrap}.lastmod{color:var(--muted);font-size:14px}
-    .cookie{position:fixed;z-index:200;right:16px;bottom:16px;max-width:520px;background:#fff;border:1px solid #e6eaed;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.08);padding:14px}
-    .cookie h3{margin:0 0 6px;font-size:16px;color:var(--qgis-green-900)}.cookie p{margin:0 0 12px;color:var(--muted)}.cookie .row{display:flex;gap:10px;flex-wrap:wrap}
-    @media(max-width:980px){.hero-inner{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.kvs{grid-template-columns:1fr}}@media(max-width:720px){.burger{display:inline-flex}nav ul{display:none}nav ul.open{display:grid;grid-template-columns:1fr;gap:6px;padding-top:10px}.cards{grid-template-columns:1fr}}
-  </style>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('consent','default',{'analytics_storage':'denied'});
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF4WXW2W3V"></script>
-  <script>gtag('js', new Date());gtag('config','G-SF4WXW2W3V');</script>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@graph":[
-      {"@type":"WebPage","@id":"https://qgis-windows.github.io/troubleshooting.html#webpage","url":"https://qgis-windows.github.io/troubleshooting.html","name":"Fix Common QGIS Install Errors on Windows","isPartOf":{"@id":"https://qgis-windows.github.io/#website"},"description":"Troubleshooting guide for QGIS on Windows: installer blocked, missing DLLs, startup crashes and more.","inLanguage":"en-US","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://qgis-windows.github.io/"},{"@type":"ListItem","position":2,"name":"Troubleshooting","item":"https://qgis-windows.github.io/troubleshooting.html"}]}}
-      ,{"@type":"FAQPage","mainEntity":[
-        {"@type":"Question","name":"Installer blocked by SmartScreen or antivirus","acceptedAnswer":{"@type":"Answer","text":"Verify the download source (download.osgeo.org). Temporarily allow the installer, run as Administrator, or whitelist the file in your AV. Avoid disabling AV permanently."}},
-        {"@type":"Question","name":"Missing DLLs or Python errors on startup","acceptedAnswer":{"@type":"Answer","text":"This often means mixed installers or missing dependencies. Uninstall conflicting QGIS installs, reinstall via OSGeo4W, and ensure you choose the correct architecture (64-bit)."}},
-        {"@type":"Question","name":"QGIS crashes on startup after update","acceptedAnswer":{"@type":"Answer","text":"Try launching QGIS with a clean profile (rename the QGIS profile folder), check plugin compatibility, and reinstall if needed. Backup projects before actions."}}
-      ]}
-    ]
-  }
-  </script>
-</head>
-<body>
-  <a class="sr-only" href="#main">Skip to content</a>
-  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden">
-    <symbol id="i-download" viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2Zm7-3a1 1 0 0 0 1-1v-6h2.59a1 1 0 0 0 .7-1.71l-4.59-4.59a1 1 0 0 0-1.41 0L6.7 8.29A1 1 0 0 0 7.41 10H10v6a1 1 0 0 0 1 1h1Z"/></symbol>
-    <symbol id="i-windows" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5L11 4v7H3V5.5Zm0 12V13h8v7l-8-1.5Zm10-14.2L21 3v8h-8V3.3Zm8 17.4l-8 1.2V13h8v7.7Z"/></symbol>
-    <symbol id="i-info" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm0 5a1.25 1.25 0 1 1 0 2.5A1.25 1.25 0 0 1 12 7Zm1.5 10h-3v-1.5h1V12h-1V10.5h2a1 1 0 0 1 1 1V15.5h1V17Z"/></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol>
-    <symbol id="i-menu" viewBox="0 0 24 24" fill="currentColor"><path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></symbol>
-    <symbol id="i-close" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 5.71 12 12l6.3 6.29-1.41 1.42L10.59 13.4l-6.3 6.3-1.41-1.42L9.17 12 2.88 5.71 4.3 4.29 10.59 10.6l6.3-6.3Z"/></symbol>
-  </svg>
-  <header>
-    <div class="container nav" role="navigation" aria-label="Main">
-      <a href="/" class="brand" aria-label="Home"><svg aria-hidden="true"><use href="#i-windows"></use></svg><span>QGIS for Windows</span></a>
-      <button class="burger" aria-controls="mainmenu" aria-expanded="false" id="burger"><svg width="20" height="20" aria-hidden="true"><use href="#i-menu"></use></svg><span class="sr-only">Menu</span></button>
-      <nav>
-        <ul id="mainmenu">
-          <li><a href="/install-windows.html">Install Guide</a></li>
-          <li><a href="/system-requirements.html">System Requirements</a></li>
-          <li><a href="/ltr-vs-latest.html">LTR vs Latest</a></li>
-          <li><a href="/msi-vs-osgeo4w.html">MSI vs OSGeo4W</a></li>
-          <li><a href="/troubleshooting.html" aria-current="page">Troubleshooting</a></li>
-          <li><a href="/plugins-windows.html">Plugins</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main id="main">
-    <section class="hero">
-      <div class="container hero-inner">
-        <div>
-          <span class="pill"><svg width="18" height="18" aria-hidden="true"><use href="#i-info"></use></svg>Troubleshooting hub</span>
-          <h1>Fix Common QGIS Install Errors on Windows</h1>
-          <p class="lead">Solutions for installer blocks, missing dependencies, crashes, and common startup issues. Safe official download via OSGeo4W is linked below.</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="https://www2.softwareportal.store/zjxKPfIK" data-download="true" data-file-name="osgeo4w-setup.exe" data-file-url="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe" aria-label="Download OSGeo4W Network Installer (official)"><svg width="20" height="20" aria-hidden="true"><use href="#i-download"></use></svg>Download OSGeo4W</a>
-            <a class="btn btn-ghost" href="/install-windows.html">Back to Install Guide</a>
-          </div>
-          <div class="notice" role="note"><svg width="18" height="18" aria-hidden="true"><use href="#i-info"></use></svg><div><strong>Safety first:</strong> verify the download URL (download.osgeo.org). Backup projects before major changes.</div></div>
-        </div>
-        <div>
-          <div class="card">
-            <h3>Common categories</h3>
-            <ul class="kvs" style="list-style:none;padding:0;margin:0;">
-              <li>Installer blocked / SmartScreen</li>
-              <li>Missing DLLs / Python issues</li>
-              <li>Startup crashes / slow rendering</li>
-              <li>Plugin conflicts / broken profiles</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fix QGIS Errors on Windows — Install, Startup and Crash Troubleshooting</title>
+<meta name="description" content="Fix common QGIS errors on Windows: SmartScreen block, installer fails, startup crash, Python errors, plugin conflicts. Step-by-step fixes and clean reinstall guide.">
+<link rel="canonical" href="https://qgis-windows.github.io/troubleshooting.html">
+<meta name="last-modified" content="2026-06-08">
+<meta property="og:title" content="Fix QGIS Errors on Windows — Install, Startup and Crash Troubleshooting">
+<meta property="og:description" content="Fix common QGIS errors on Windows: SmartScreen block, installer fails, startup crash, Python errors, plugin conflicts. Step-by-step fixes and clean reinstall guide.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qgis-windows.github.io/troubleshooting.html">
+<meta property="og:image" content="https://qgis-windows.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/style.css">
+</head><body>
+<nav class="site-nav"><div class="wrap"><div class="nav-inner"><a href="/index.html" class="nav-logo"><div class="nav-logo-mark">Q</div><span class="nav-logo-name">QGIS</span><span class="nav-logo-sub">for Windows</span></a><div class="nav-links"><a href="/index.html" id="nl-home">Download</a><a href="/install-windows.html" id="nl-install">Install</a><a href="/ltr-vs-latest.html" id="nl-ltr">LTR vs Latest</a><a href="/system-requirements.html" id="nl-req">Requirements</a><a href="/troubleshooting.html" id="nl-fix">Fix errors</a><a href="/qgis-windows-faq.html" id="nl-faq">FAQ</a></div><a href="/index.html" class="nav-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</a></div></div></nav>
+<div class="page-hero"><div class="wrap">
+<nav class="breadcrumb"><a href="/index.html">home</a> <span>/</span> <span>troubleshooting</span></nav>
+<span class="page-tag page-tag-red">Troubleshooting</span>
+<h1>Fix QGIS errors on Windows &mdash; <span>install, startup &amp; crash fixes</span></h1>
+<p class="page-lead">Fix the most common QGIS errors on Windows: installer blocked by SmartScreen, startup crash, Python errors, plugin conflicts and DLL mismatch. Clean reinstall guide included.</p>
 
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Step‑by‑step fixes</h2>
-        <div class="cards">
-          <div class="card">
-            <h3>Installer blocked (SmartScreen/AV)</h3>
-            <p>Verify the file and allow if flagged: right‑click → Properties → check Origin, then Run as Administrator. If your AV blocks it, temporarily whitelist the installer or use an admin account. Never run unknown executables.</p>
-          </div>
-          <div class="card">
-            <h3>Missing DLLs or "ImportError"</h3>
-            <p>Often caused by mixed installers or Python environment conflicts. Uninstall other QGIS installs, remove leftover OSGeo folders, then reinstall via OSGeo4W (choose correct architecture).</p>
-          </div>
-          <div class="card">
-            <h3>QGIS crashes on start</h3>
-            <p>Start with a clean profile: rename the QGIS profile folder (in %APPDATA%/QGIS/QGIS3/profiles). If it starts, a plugin or setting caused the crash—disable plugins and reintroduce settings one by one.</p>
-          </div>
-          <div class="card">
-            <h3>Slow rendering / memory errors</h3>
-            <p>Use fewer visible layers, enable scale‑based rendering, store data on SSD, and increase RAM. For large rasters, use overviews and efficient formats like GeoPackage.</p>
-          </div>
-          <div class="card">
-            <h3>Broken plugins after update</h3>
-            <p>Plugins may target a specific API. Disable plugins, update them, or revert to LTR if plugins are incompatible. Reinstall problematic plugins from the official repository.</p>
-          </div>
-          <div class="card">
-            <h3>Clean uninstall</h3>
-            <p>Uninstall QGIS via Apps & Features, then remove C:\\OSGeo4W (or MSI install folder) and %APPDATA%/QGIS if you want a full reset. Backup projects before deleting.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Quick commands & checks</h2>
-        <div class="card">
-          <p><strong>Check architecture:</strong> In Windows Settings → System → About, make sure you run 64‑bit if you downloaded 64‑bit installer.</p>
-          <p><strong>Run as Admin:</strong> Right‑click the installer → Run as administrator.</p>
-          <p><strong>Verify source:</strong> The official installer is at <code>https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe</code>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section faq">
-      <div class="container">
-        <h2 class="section-title">FAQ</h2>
-        <details>
-          <summary>SmartScreen warns "Unknown publisher" — is it safe?</summary>
-          <p>SmartScreen may flag unsigned installers. Confirm the source (download.osgeo.org). If confirmed, proceed or temporarily allow via the SmartScreen dialog. Keep AV enabled.</p>
-        </details>
-        <details>
-          <summary>I see Python errors after install. What now?</summary>
-          <p>Python in QGIS is bundled within the installer. Python errors usually point to mixed installations or custom PATH entries. Remove other GIS/Python installs from PATH and reinstall via OSGeo4W.</p>
-        </details>
-        <details>
-          <summary>How to reset QGIS settings?</summary>
-          <p>Rename or delete the profile folder at %APPDATA%\QGIS\QGIS3\profiles\default. QGIS will recreate a clean profile at next start.</p>
-        </details>
-      </div>
-    </section>
-
-  </main>
-  <footer>
-    <div class="container footer-inner">
-      <div class="lastmod" aria-live="polite">Last updated: <time id="lastmod" datetime=""></time></div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="/">Download</a>
-        <a href="/install-windows.html">Install</a>
-        <a href="/system-requirements.html">Requirements</a>
-        <a href="/ltr-vs-latest.html">Versions</a>
-        <a href="/msi-vs-osgeo4w.html">Installers</a>
-        <a href="/plugins-windows.html">Plugins</a>
-      </nav>
-    </div>
-  </footer>
-
-  <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
-    <button class="btn" data-close aria-label="Close cookie banner"><svg width="18" height="18" aria-hidden="true"><use href="#i-close"></use></svg></button>
-    <h3>Cookies & analytics</h3>
-    <p>We use Google Analytics (GA4) to improve this site. You can accept or decline analytics cookies. The download link remains available either way.</p>
-    <div class="row">
-      <button class="btn accept" id="cookie-accept">Accept</button>
-      <button class="btn decline" id="cookie-decline">Decline</button>
-    </div>
-  </div>
-
-  <script>
-    (function(){
-      const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>Array.from(c.querySelectorAll(s));
-      const burger=$('#burger'),menu=$('#mainmenu');
-      if(burger&&menu){burger.addEventListener('click',()=>{menu.classList.toggle('open');const e=burger.getAttribute('aria-expanded')==='true';burger.setAttribute('aria-expanded',String(!e));});}
-      const last=new Date(document.lastModified),lastISO=last.toISOString(),lastHuman=last.toLocaleString(undefined,{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'});
-      const lastEl=$('#lastmod'),meta=$('#meta-lastmod'); if(lastEl){lastEl.textContent=lastHuman;lastEl.setAttribute('datetime',lastISO);} if(meta){meta.setAttribute('content',lastISO);} 
-      const COOKIE_KEY='ga_consent_v1',state=localStorage.getItem(COOKIE_KEY),banner=$('#cookie'),acceptBtn=$('#cookie-accept'),declineBtn=$('#cookie-decline'),closeBtn=banner?banner.querySelector('[data-close]'):null;
-      function setConsent(g){gtag('consent','update',{'analytics_storage':g?'granted':'denied'});localStorage.setItem(COOKIE_KEY,g?'accepted':'declined');}
-      function ensureBanner(){if(!banner) return; if(!state){banner.hidden=false;}else{setConsent(state==='accepted');}}
-      ensureBanner(); acceptBtn&&acceptBtn.addEventListener('click',()=>{setConsent(true);banner.hidden=true}); declineBtn&&declineBtn.addEventListener('click',()=>{setConsent(false);banner.hidden=true}); closeBtn&&closeBtn.addEventListener('click',()=>{setConsent(false);banner.hidden=true});
-      function canTrack(){try{return localStorage.getItem(COOKIE_KEY)==='accepted'}catch(e){return false}}
-      function trackDownload(name,url){if(!canTrack())return; gtag('event','file_download',{event_category:'downloads',event_label:name,file_url:url});}
-      $$('a[data-download="true"]').forEach(a=>{a.addEventListener('click',()=>{const name=a.getAttribute('data-file-name')||'download.file',url=a.getAttribute('data-file-url')||a.href;trackDownload(name,url);});});
-    })();
-  </script>
-</body>
-</html>
+</div></div>
+<div class="wrap"><div class="content-layout">
+<main><div class="callout callout-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Start by identifying your exact error. Most QGIS install and startup errors on Windows fall into three categories: installer blocked by security software, missing dependencies, or Python/GDAL version conflicts.</span></div>
+<div class="section"><span class="section-label">Install errors</span><h2>Common install errors and fixes</h2>
+<div class="err-card"><div class="err-title">Windows SmartScreen blocked the installer</div><div class="err-cause">SmartScreen flags less-known publishers even when signed</div><span class="err-fix">Click More info > Run anyway. Safe for official OSGeo installer.</span></div>
+<div class="err-card"><div class="err-title">OSGeo4W setup fails to download packages</div><div class="err-cause">Mirror server timeout or network issue</div><span class="err-fix">Retry with a different mirror or check your internet connection</span></div>
+<div class="err-card"><div class="err-title">Error: "Unable to create directory" during install</div><div class="err-cause">Insufficient permissions on Program Files</div><span class="err-fix">Right-click osgeo4w-setup.exe > Run as administrator</span></div>
+<div class="err-card"><div class="err-title">Antivirus quarantines QGIS files during install</div><div class="err-cause">Antivirus flags GDAL/Python native DLLs as suspicious</div><span class="err-fix">Temporarily disable AV during install, then add QGIS folder to exclusions</span></div>
+</div>
+<div class="section"><span class="section-label">Startup errors</span><h2>QGIS fails to start or crashes on launch</h2>
+<div class="err-card"><div class="err-title">QGIS opens then immediately closes</div><div class="err-cause">Corrupted QGIS profile or conflicting plugin</div><span class="err-fix">Hold Shift while launching QGIS to disable plugins</span></div>
+<div class="err-card"><div class="err-title">Error: "The application was unable to start correctly (0xc000007b)"</div><div class="err-cause">32-bit / 64-bit DLL mismatch</div><span class="err-fix">Reinstall Visual C++ Redistributable x64 from microsoft.com</span></div>
+<div class="err-card"><div class="err-title">Python error on startup: "No module named qgis"</div><div class="err-cause">PYTHONPATH not set correctly after install</div><span class="err-fix">Reinstall via OSGeo4W. Do not use system Python with QGIS.</span></div>
+<div class="err-card"><div class="err-title">QGIS splash screen appears then disappears</div><div class="err-cause">Plugin crash during startup</div><span class="err-fix">Launch with Shift held to skip plugins, then disable problem plugin</span></div>
+</div>
+<div class="section"><span class="section-label">Quick diagnostics</span><h2>Diagnose QGIS issues on Windows</h2>
+<div class="term"><div class="term-bar"><div class="term-dot" style="background:#ff5f56"></div><div class="term-dot" style="background:#ffbd2e"></div><div class="term-dot" style="background:#27c93f"></div><span class="term-label">QGIS Python Console (Plugins > Python Console)</span></div><div class="term-body"><div><span class="t-cm"># Check QGIS and Python versions:</span></div><div><span class="t-p">&gt;&gt;&gt;</span> <span class="t-c">import qgis; print(qgis.utils.QGis.QGIS_VERSION)</span></div><div><span class="t-p">&gt;&gt;&gt;</span> <span class="t-c">import sys; print(sys.version)</span></div><div><span class="t-p">&gt;&gt;&gt;</span> <span class="t-c">from osgeo import gdal; print(gdal.__version__)</span></div><div></div><div><span class="t-cm"># Check installed plugins:</span></div><div><span class="t-p">&gt;&gt;&gt;</span> <span class="t-c">import qgis.utils; print(list(qgis.utils.plugins.keys()))</span></div></div></div>
+</div>
+<div class="section"><span class="section-label">Clean reinstall</span><h2>Full clean reinstall of QGIS</h2><ul class="steps">
+<li class="step"><div class="step-n">1</div><div><h3>Uninstall QGIS</h3><p>Re-run <code>osgeo4w-setup.exe</code> &rarr; select packages to uninstall, or use Control Panel &rarr; Programs for the MSI version.</p></div></li>
+<li class="step"><div class="step-n">2</div><div><h3>Delete QGIS profile (optional)</h3><p>Delete <code>%APPDATA%\QGIS\QGIS3</code> to remove all settings, plugins and custom configurations. This is the "nuclear option" &mdash; only do this if other fixes have not worked.</p></div></li>
+<li class="step"><div class="step-n">3</div><div><h3>Reinstall fresh</h3><p>Download and run <code>osgeo4w-setup.exe</code> again. Choose Express Desktop Install and select <code>qgis-ltr</code>.</p></div></li>
+</ul></div>
+<div class="section"><span class="section-label">FAQ</span><h2>Troubleshooting questions</h2><div class="faq">
+<div class="faq-item"><details><summary>QGIS works but is very slow on Windows</summary><div class="faq-ans">See the <a href="/qgis-slow-windows.html">QGIS slow performance guide</a>. Quick wins: enable render caching, use SSD storage, build spatial indexes on large layers, and reproject data to your working CRS to avoid on-the-fly reprojection.</div></details></div>
+<div class="faq-item"><details><summary>QGIS crashes when loading a specific layer</summary><div class="faq-ans">The layer file may be corrupt or in an unsupported format. Try: (1) open the layer in a fresh QGIS project, (2) try a different file format (convert SHP to GeoPackage), (3) check the QGIS error log (View &rarr; Log Messages). See <a href="/qgis-crash-windows.html">QGIS crash guide</a>.</div></details></div>
+</div></div>
+<div class="cta-banner"><div><h2>QGIS not opening at all?</h2><p>Dedicated guide for startup crashes.</p></div><a href="/qgis-not-opening.html" class="btn-white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>QGIS not opening</a></div>
+<div style="margin-bottom:24px"><span class="section-label">Related guides</span><div class="rel-grid"><a href="/qgis-not-opening.html" class="rel-card"><div class="rel-title">Not opening &rarr;</div><div class="rel-sub">startup fix</div></a><a href="/qgis-python-error.html" class="rel-card"><div class="rel-title">Python errors &rarr;</div><div class="rel-sub">Python/GDAL fixes</div></a><a href="/qgis-crash-windows.html" class="rel-card"><div class="rel-title">Crashes &rarr;</div><div class="rel-sub">crash fix guide</div></a></div></div></main>
+<aside class="content-sidebar"><div class="sb-ver"><div class="sb-ver-label">LTR version</div><div class="sb-ver-val">3.40.5</div><div class="sb-ver-sub">Windows 10 / 11</div></div><div class="sb-card"><div class="sb-card-title">Download</div><ul class="sb-links"><li><a href="/index.html">Download QGIS</a></li><li><a href="/qgis-ltr-download.html">Download LTR</a></li><li><a href="/qgis-latest-version.html">Download Latest</a></li><li><a href="/qgis-standalone-installer.html">Standalone installer</a></li><li><a href="/osgeo4w-windows.html">OSGeo4W guide</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Install & versions</div><ul class="sb-links"><li><a href="/install-windows.html">Install guide</a></li><li><a href="/ltr-vs-latest.html">LTR vs Latest</a></li><li><a href="/msi-vs-osgeo4w.html">MSI vs OSGeo4W</a></li><li><a href="/system-requirements.html">System requirements</a></li><li><a href="/qgis-update-windows.html">Update QGIS</a></li><li><a href="/qgis-uninstall-windows.html">Uninstall</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Fix & learn</div><ul class="sb-links"><li><a href="/troubleshooting.html" class="cur">Troubleshooting</a></li><li><a href="/qgis-not-opening.html">QGIS not opening</a></li><li><a href="/qgis-python-error.html">Python errors</a></li><li><a href="/qgis-crash-windows.html">QGIS crashes</a></li><li><a href="/qgis-slow-windows.html">QGIS slow</a></li><li><a href="/plugins-windows.html">Plugins</a></li><li><a href="/qgis-projection-crs.html">CRS & projections</a></li><li><a href="/qgis-vs-arcgis.html">QGIS vs ArcGIS</a></li><li><a href="/qgis-windows-faq.html">FAQ</a></li></ul></div></aside>
+</div></div>
+<footer class="site-footer"><div class="wrap"><div class="footer-inner"><div><div class="footer-logo"><div class="footer-logo-mark">Q</div><span class="footer-logo-name">QGIS for Windows</span></div><p class="footer-tagline">Unofficial Windows guide for QGIS &mdash; install, configure, fix errors.</p></div><div><div class="footer-col-title">Install</div><ul class="footer-links"><li><a href="/index.html">Download QGIS</a></li><li><a href="/install-windows.html">Install guide</a></li><li><a href="/qgis-standalone-installer.html">Standalone MSI</a></li><li><a href="/osgeo4w-windows.html">OSGeo4W guide</a></li><li><a href="/qgis-update-windows.html">Update QGIS</a></li></ul></div><div><div class="footer-col-title">Versions</div><ul class="footer-links"><li><a href="/ltr-vs-latest.html">LTR vs Latest</a></li><li><a href="/msi-vs-osgeo4w.html">MSI vs OSGeo4W</a></li><li><a href="/qgis-ltr-download.html">Download LTR</a></li><li><a href="/qgis-latest-version.html">Latest version</a></li><li><a href="/system-requirements.html">System requirements</a></li></ul></div><div><div class="footer-col-title">Fix & learn</div><ul class="footer-links"><li><a href="/troubleshooting.html">Troubleshooting</a></li><li><a href="/qgis-not-opening.html">QGIS not opening</a></li><li><a href="/qgis-python-error.html">Python errors</a></li><li><a href="/plugins-windows.html">Plugins</a></li><li><a href="/qgis-windows-faq.html">FAQ</a></li></ul></div></div><div class="footer-bottom"><p>Not affiliated with the QGIS project or OSGeo. Unofficial community guide.</p><p><strong>Affiliate disclosure:</strong> Download links may be partner links.</p></div></div></footer><div class="cookie-bar" id="cookieBar" style="display:none"><p>We use Google Analytics for anonymous traffic data. <a href="/qgis-windows-faq.html">Privacy</a></p><div class="cookie-btns"><button class="cookie-accept" id="cookieAccept">Accept</button><button class="cookie-decline" id="cookieDecline">Decline</button></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-SF4WXW2W3V"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("consent","default",{analytics_storage:"denied",ad_storage:"denied"});gtag("js",new Date());gtag("config","G-SF4WXW2W3V",{anonymize_ip:true,send_page_view:false});function grantGA(){gtag("consent","update",{analytics_storage:"granted"});gtag("event","page_view",{page_location:location.href,page_title:document.title})}document.addEventListener("DOMContentLoaded",function(){var bar=document.getElementById("cookieBar");var c=localStorage.getItem("qg_consent");if(!c){bar.style.display="flex"}else if(c==="1"){grantGA()}document.getElementById("cookieAccept").addEventListener("click",function(){localStorage.setItem("qg_consent","1");grantGA();bar.style.display="none"});document.getElementById("cookieDecline").addEventListener("click",function(){localStorage.setItem("qg_consent","0");bar.style.display="none"});});</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"QGIS not starting on Windows","acceptedAnswer":{"@type":"Answer","text":"Hold Shift while launching to disable plugins. If it starts, a plugin is causing the crash. Disable it in Plugins > Manage and Install Plugins."}},{"@type":"Question","name":"Windows SmartScreen blocking QGIS installer","acceptedAnswer":{"@type":"Answer","text":"Click More info > Run anyway. The OSGeo4W installer is signed by OSGeo but SmartScreen may flag it."}},{"@type":"Question","name":"Python error on QGIS startup","acceptedAnswer":{"@type":"Answer","text":"Reinstall QGIS via OSGeo4W. Do not use a system Python installation with QGIS."}}]}</script>
+<script>var el=document.getElementById("nl-fix");if(el)el.classList.add("active");</script>
+</body></html>

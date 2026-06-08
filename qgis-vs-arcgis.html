@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QGIS vs ArcGIS on Windows — Full Comparison Guide 2026</title>
+<meta name="description" content="Compare QGIS and ArcGIS Pro on Windows. Cost, features, file formats, Python scripting, 3D analysis and when to choose each GIS software.">
+<link rel="canonical" href="https://qgis-windows.github.io/qgis-vs-arcgis.html">
+<meta name="last-modified" content="2026-06-08">
+<meta property="og:title" content="QGIS vs ArcGIS on Windows — Full Comparison Guide 2026">
+<meta property="og:description" content="Compare QGIS and ArcGIS Pro on Windows. Cost, features, file formats, Python scripting, 3D analysis and when to choose each GIS software.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qgis-windows.github.io/qgis-vs-arcgis.html">
+<meta property="og:image" content="https://qgis-windows.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/style.css">
+</head><body>
+<nav class="site-nav"><div class="wrap"><div class="nav-inner"><a href="/index.html" class="nav-logo"><div class="nav-logo-mark">Q</div><span class="nav-logo-name">QGIS</span><span class="nav-logo-sub">for Windows</span></a><div class="nav-links"><a href="/index.html" id="nl-home">Download</a><a href="/install-windows.html" id="nl-install">Install</a><a href="/ltr-vs-latest.html" id="nl-ltr">LTR vs Latest</a><a href="/system-requirements.html" id="nl-req">Requirements</a><a href="/troubleshooting.html" id="nl-fix">Fix errors</a><a href="/qgis-windows-faq.html" id="nl-faq">FAQ</a></div><a href="/index.html" class="nav-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</a></div></div></nav>
+<div class="page-hero"><div class="wrap">
+<nav class="breadcrumb"><a href="/index.html">home</a> <span>/</span> <span>qgis-vs-arcgis</span></nav>
+<span class="page-tag">Comparison</span>
+<h1>QGIS vs ArcGIS on Windows &mdash; <span>full comparison guide 2026</span></h1>
+<p class="page-lead">Compare QGIS (free, open source) vs ArcGIS Pro (commercial) on Windows. Cost, features, file formats, Python scripting, and which to choose for your use case.</p>
+
+</div></div>
+<div class="wrap"><div class="content-layout">
+<main><div class="section"><span class="section-label">Quick summary</span><h2>QGIS vs ArcGIS &mdash; key differences</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Factor</th><th>QGIS</th><th>ArcGIS</th></tr></thead><tbody>
+<tr><td><strong>Cost</strong></td><td>Free &amp; open source</td><td>Commercial licence (£/$/€ per year)</td></tr>
+<tr><td><strong>Vendor</strong></td><td>Community / OSGeo</td><td>Esri</td></tr>
+<tr><td><strong>OS support</strong></td><td>Windows, macOS, Linux</td><td>Windows primarily (ArcGIS Pro)</td></tr>
+<tr><td><strong>File formats</strong></td><td>All major formats (GDAL)</td><td>Most formats (some proprietary only)</td></tr>
+<tr><td><strong>Python scripting</strong></td><td>PyQGIS + standard Python</td><td>ArcPy (proprietary)</td></tr>
+<tr><td><strong>3D analysis</strong></td><td>Basic (QGIS 3D)</td><td>Full 3D (ArcGIS Pro)</td></tr>
+<tr><td><strong>Network analysis</strong></td><td>Plugin-based</td><td>Built-in Network Analyst</td></tr>
+<tr><td><strong>Cloud &amp; enterprise</strong></td><td>Limited</td><td>Full ArcGIS Enterprise suite</td></tr>
+<tr><td><strong>Support</strong></td><td>Community forums, docs</td><td>Commercial support included</td></tr>
+<tr><td><strong>Learning curve</strong></td><td>Moderate</td><td>Moderate to steep</td></tr>
+</tbody></table></div>
+</div>
+<div class="section"><span class="section-label">Choose QGIS when</span><h2>When QGIS is the better choice</h2><ul>
+<li><strong>Budget:</strong> QGIS is completely free. No licensing costs, no seat limits, no subscription.</li>
+<li><strong>Open formats:</strong> QGIS reads and writes virtually all GIS formats via GDAL/OGR. No vendor lock-in.</li>
+<li><strong>Cross-platform:</strong> Your team uses a mix of Windows, macOS and Linux.</li>
+<li><strong>Education:</strong> Teaching GIS without software licensing costs.</li>
+<li><strong>Open source ecosystem:</strong> You want to contribute to or customise the software.</li>
+<li><strong>Standard GIS tasks:</strong> Cartography, spatial analysis, data editing, and most day-to-day GIS work.</li>
+</ul></div>
+<div class="section"><span class="section-label">Choose ArcGIS when</span><h2>When ArcGIS is the better choice</h2><ul>
+<li><strong>Enterprise deployment:</strong> Large organisations needing ArcGIS Server, Portal or Online integration.</li>
+<li><strong>Advanced 3D:</strong> Complex 3D scene analysis, CityEngine integration.</li>
+<li><strong>Network analysis:</strong> Route optimisation, service area analysis with Network Analyst.</li>
+<li><strong>Existing Esri ecosystem:</strong> Your organisation already uses ArcGIS Online, Survey123, or Field Maps.</li>
+<li><strong>Formal support:</strong> Paid support contracts required by your organisation.</li>
+</ul></div>
+<div class="section"><span class="section-label">Feature comparison</span><h2>Feature-by-feature comparison</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Feature</th><th>QGIS</th><th>ArcGIS Pro</th></tr></thead><tbody>
+<tr><td><strong>Basic mapping &amp; cartography</strong></td><td>Excellent</td><td>Excellent</td></tr>
+<tr><td><strong>Vector editing</strong></td><td>Excellent</td><td>Excellent</td></tr>
+<tr><td><strong>Raster analysis</strong></td><td>Good</td><td>Excellent</td></tr>
+<tr><td><strong>Spatial statistics</strong></td><td>Good (via R bridge)</td><td>Excellent</td></tr>
+<tr><td><strong>Python automation</strong></td><td>PyQGIS &mdash; full access</td><td>ArcPy &mdash; proprietary</td></tr>
+<tr><td><strong>Plugin ecosystem</strong></td><td>1000+ free plugins</td><td>Extensions (paid)</td></tr>
+<tr><td><strong>Print composer</strong></td><td>Excellent</td><td>Good</td></tr>
+<tr><td><strong>WMS/WFS services</strong></td><td>Excellent</td><td>Good</td></tr>
+<tr><td><strong>PostGIS integration</strong></td><td>Excellent</td><td>Good</td></tr>
+<tr><td><strong>LiDAR processing</strong></td><td>Via PDAL plugin</td><td>Full LAS tools</td></tr>
+</tbody></table></div>
+</div>
+<div class="section"><span class="section-label">FAQ</span><h2>QGIS vs ArcGIS questions</h2><div class="faq">
+<div class="faq-item"><details><summary>Can I open ArcGIS files in QGIS?</summary><div class="faq-ans">Yes for most formats. QGIS can open Shapefiles (.shp), File Geodatabases (.gdb) in read mode, GeoTIFF rasters, and connect to ArcGIS REST services. It cannot read .mxd map documents directly, but can open the underlying data layers.</div></details></div>
+<div class="faq-item"><details><summary>Is QGIS good enough for professional GIS work?</summary><div class="faq-ans">Yes. QGIS is used extensively by governments, NGOs, environmental consultants, and universities worldwide. It handles all standard GIS workflows. The main gap vs ArcGIS Pro is in specific Esri-ecosystem integrations and some advanced 3D and network tools.</div></details></div>
+<div class="faq-item"><details><summary>Which is easier to learn?</summary><div class="faq-ans">Both have a similar learning curve for core GIS concepts. QGIS has excellent documentation and a large community with free tutorials. ArcGIS has Esri training resources and a structured certification path. Neither is dramatically easier than the other for a beginner.</div></details></div>
+</div></div>
+<div class="cta-banner"><div><h2>Ready to try QGIS?</h2><p>Download the free official installer for Windows.</p></div><a href="/index.html" class="btn-white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download QGIS</a></div>
+<div style="margin-bottom:24px"><span class="section-label">Related guides</span><div class="rel-grid"><a href="/index.html" class="rel-card"><div class="rel-title">Download QGIS &rarr;</div><div class="rel-sub">get started free</div></a><a href="/ltr-vs-latest.html" class="rel-card"><div class="rel-title">LTR vs Latest &rarr;</div><div class="rel-sub">choose version</div></a><a href="/system-requirements.html" class="rel-card"><div class="rel-title">Requirements &rarr;</div><div class="rel-sub">check your PC</div></a></div></div></main>
+<aside class="content-sidebar"><div class="sb-ver"><div class="sb-ver-label">LTR version</div><div class="sb-ver-val">3.40.5</div><div class="sb-ver-sub">Windows 10 / 11</div></div><div class="sb-card"><div class="sb-card-title">Download</div><ul class="sb-links"><li><a href="/index.html">Download QGIS</a></li><li><a href="/qgis-ltr-download.html">Download LTR</a></li><li><a href="/qgis-latest-version.html">Download Latest</a></li><li><a href="/qgis-standalone-installer.html">Standalone installer</a></li><li><a href="/osgeo4w-windows.html">OSGeo4W guide</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Install & versions</div><ul class="sb-links"><li><a href="/install-windows.html">Install guide</a></li><li><a href="/ltr-vs-latest.html">LTR vs Latest</a></li><li><a href="/msi-vs-osgeo4w.html">MSI vs OSGeo4W</a></li><li><a href="/system-requirements.html">System requirements</a></li><li><a href="/qgis-update-windows.html">Update QGIS</a></li><li><a href="/qgis-uninstall-windows.html">Uninstall</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Fix & learn</div><ul class="sb-links"><li><a href="/troubleshooting.html">Troubleshooting</a></li><li><a href="/qgis-not-opening.html">QGIS not opening</a></li><li><a href="/qgis-python-error.html">Python errors</a></li><li><a href="/qgis-crash-windows.html">QGIS crashes</a></li><li><a href="/qgis-slow-windows.html">QGIS slow</a></li><li><a href="/plugins-windows.html">Plugins</a></li><li><a href="/qgis-projection-crs.html">CRS & projections</a></li><li><a href="/qgis-vs-arcgis.html" class="cur">QGIS vs ArcGIS</a></li><li><a href="/qgis-windows-faq.html">FAQ</a></li></ul></div></aside>
+</div></div>
+<footer class="site-footer"><div class="wrap"><div class="footer-inner"><div><div class="footer-logo"><div class="footer-logo-mark">Q</div><span class="footer-logo-name">QGIS for Windows</span></div><p class="footer-tagline">Unofficial Windows guide for QGIS &mdash; install, configure, fix errors.</p></div><div><div class="footer-col-title">Install</div><ul class="footer-links"><li><a href="/index.html">Download QGIS</a></li><li><a href="/install-windows.html">Install guide</a></li><li><a href="/qgis-standalone-installer.html">Standalone MSI</a></li><li><a href="/osgeo4w-windows.html">OSGeo4W guide</a></li><li><a href="/qgis-update-windows.html">Update QGIS</a></li></ul></div><div><div class="footer-col-title">Versions</div><ul class="footer-links"><li><a href="/ltr-vs-latest.html">LTR vs Latest</a></li><li><a href="/msi-vs-osgeo4w.html">MSI vs OSGeo4W</a></li><li><a href="/qgis-ltr-download.html">Download LTR</a></li><li><a href="/qgis-latest-version.html">Latest version</a></li><li><a href="/system-requirements.html">System requirements</a></li></ul></div><div><div class="footer-col-title">Fix & learn</div><ul class="footer-links"><li><a href="/troubleshooting.html">Troubleshooting</a></li><li><a href="/qgis-not-opening.html">QGIS not opening</a></li><li><a href="/qgis-python-error.html">Python errors</a></li><li><a href="/plugins-windows.html">Plugins</a></li><li><a href="/qgis-windows-faq.html">FAQ</a></li></ul></div></div><div class="footer-bottom"><p>Not affiliated with the QGIS project or OSGeo. Unofficial community guide.</p><p><strong>Affiliate disclosure:</strong> Download links may be partner links.</p></div></div></footer><div class="cookie-bar" id="cookieBar" style="display:none"><p>We use Google Analytics for anonymous traffic data. <a href="/qgis-windows-faq.html">Privacy</a></p><div class="cookie-btns"><button class="cookie-accept" id="cookieAccept">Accept</button><button class="cookie-decline" id="cookieDecline">Decline</button></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-SF4WXW2W3V"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("consent","default",{analytics_storage:"denied",ad_storage:"denied"});gtag("js",new Date());gtag("config","G-SF4WXW2W3V",{anonymize_ip:true,send_page_view:false});function grantGA(){gtag("consent","update",{analytics_storage:"granted"});gtag("event","page_view",{page_location:location.href,page_title:document.title})}document.addEventListener("DOMContentLoaded",function(){var bar=document.getElementById("cookieBar");var c=localStorage.getItem("qg_consent");if(!c){bar.style.display="flex"}else if(c==="1"){grantGA()}document.getElementById("cookieAccept").addEventListener("click",function(){localStorage.setItem("qg_consent","1");grantGA();bar.style.display="none"});document.getElementById("cookieDecline").addEventListener("click",function(){localStorage.setItem("qg_consent","0");bar.style.display="none"});});</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"QGIS vs ArcGIS on Windows Comparison","description":"Compare QGIS and ArcGIS Pro on Windows: cost, features, formats and use cases.","url":"https://qgis-windows.github.io/qgis-vs-arcgis.html"}</script>
+<script>var el=document.getElementById("nl-home");if(el)el.classList.add("active");</script>
+</body></html>

@@ -1,430 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>QGIS for Windows — System Requirements & Performance Tips</title>
-  <meta name="description" content="Check QGIS system requirements for Windows and learn quick performance tips. Safe official download via OSGeo4W, plus setup and troubleshooting links." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://qgis-windows.github.io/system-requirements.html" />
-  <meta property="og:title" content="QGIS for Windows — System Requirements & Performance Tips" />
-  <meta property="og:description" content="Minimum and recommended specs for Windows, plus practical tips to speed up QGIS. Official OSGeo4W download link included." />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://qgis-windows.github.io/system-requirements.html" />
-  <meta property="og:image" content="https://qgis-windows.github.io/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="QGIS for Windows — System Requirements & Performance Tips" />
-  <meta name="twitter:description" content="Windows specs and performance tips for QGIS. Official OSGeo4W link." />
-  <meta name="twitter:image" content="https://qgis-windows.github.io/og-image.png" />
-  <meta name="theme-color" content="#589632" />
-  <meta name="last-modified" id="meta-lastmod" content="" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <style>
-    :root {
-      --qgis-green: #589632;
-      --qgis-green-900: #3b6a23;
-      --accent-orange: #F0A202;
-      --text: #1E2A2F;
-      --muted: #5b6b73;
-      --bg: #F6F8F9;
-      --white: #ffffff;
-      --focus: #0a84ff;
-      --ring: rgba(10,132,255,.35);
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; line-height: 1.6; }
-    a { color: var(--qgis-green-900); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .container { width: min(1120px, 100%); margin: 0 auto; padding: 0 16px; }
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QGIS System Requirements for Windows — RAM, CPU and Storage Guide 2026</title>
+<meta name="description" content="QGIS minimum and recommended system requirements for Windows 10 and 11. RAM, CPU, storage and GPU specs, plus performance tips for large datasets.">
+<link rel="canonical" href="https://qgis-windows.github.io/system-requirements.html">
+<meta name="last-modified" content="2026-06-08">
+<meta property="og:title" content="QGIS System Requirements for Windows — RAM, CPU and Storage Guide 2026">
+<meta property="og:description" content="QGIS minimum and recommended system requirements for Windows 10 and 11. RAM, CPU, storage and GPU specs, plus performance tips for large datasets.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://qgis-windows.github.io/system-requirements.html">
+<meta property="og:image" content="https://qgis-windows.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/style.css">
+</head><body>
+<nav class="site-nav"><div class="wrap"><div class="nav-inner"><a href="/index.html" class="nav-logo"><div class="nav-logo-mark">Q</div><span class="nav-logo-name">QGIS</span><span class="nav-logo-sub">for Windows</span></a><div class="nav-links"><a href="/index.html" id="nl-home">Download</a><a href="/install-windows.html" id="nl-install">Install</a><a href="/ltr-vs-latest.html" id="nl-ltr">LTR vs Latest</a><a href="/system-requirements.html" id="nl-req">Requirements</a><a href="/troubleshooting.html" id="nl-fix">Fix errors</a><a href="/qgis-windows-faq.html" id="nl-faq">FAQ</a></div><a href="/index.html" class="nav-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</a></div></div></nav>
+<div class="page-hero"><div class="wrap">
+<nav class="breadcrumb"><a href="/index.html">home</a> <span>/</span> <span>system-requirements</span></nav>
+<span class="page-tag">Requirements</span>
+<h1>QGIS system requirements for Windows &mdash; <span>RAM, CPU &amp; storage guide 2026</span></h1>
+<p class="page-lead">QGIS minimum requirements: Windows 10 64-bit, 4 GB RAM, 2 GB disk. Recommended: 8+ GB RAM, SSD. Full guide for all hardware components plus performance tips.</p>
 
-    :focus { outline: 2px solid var(--focus); outline-offset: 2px; box-shadow: 0 0 0 4px var(--ring); }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
-
-    header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid #e6eaed; }
-    .nav { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 12px 0; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; color: var(--qgis-green-900); }
-    .brand svg { width: 28px; height: 28px; }
-    nav ul { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-end; padding: 0; margin: 0; list-style: none; }
-    nav a { display: inline-block; padding: 8px 10px; border-radius: 6px; }
-    nav a:hover { background: #eef5f0; text-decoration: none; }
-    .burger { display: none; border: 1px solid #d5dadd; padding: 8px 10px; border-radius: 6px; background: var(--white); }
-
-    .hero { background: linear-gradient(180deg, #ffffff 0%, #f2f7f3 100%); border-bottom: 1px solid #e6eaed; }
-    .hero-inner { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; padding: 40px 0; align-items: center; }
-    .hero h1 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 40px); line-height: 1.15; color: var(--qgis-green-900); }
-    .hero p.lead { font-size: clamp(16px, 2.2vw, 18px); color: var(--muted); margin: 0 0 18px; }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0 6px; }
-    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 10px; border: 2px solid transparent; font-weight: 700; cursor: pointer; text-decoration: none; }
-    .btn-primary { background: var(--accent-orange); color: #1b1200; }
-    .btn-primary:hover { filter: brightness(0.97); text-decoration: none; }
-    .btn-ghost { background: #ffffff; border-color: #d6e2d8; color: var(--qgis-green-900); }
-    .btn-ghost:hover { background: #f0f7f1; text-decoration: none; }
-    .pill { display: inline-flex; align-items: center; gap: 8px; background: #eef7ee; color: var(--qgis-green-900); padding: 6px 10px; border-radius: 999px; font-size: 14px; font-weight: 600; }
-
-    .section { padding: 28px 0; }
-    .section-title { font-size: 22px; color: var(--qgis-green-900); margin: 0 0 16px; }
-    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-    .card { background: #ffffff; border: 1px solid #e6eaed; border-radius: 14px; padding: 16px; }
-    .card h3 { margin: 0 0 8px; font-size: 18px; }
-    .card p { margin: 0; color: var(--muted); }
-    .list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; padding: 0; margin: 0; list-style: none; }
-    .list li { display: flex; align-items: flex-start; gap: 8px; }
-    .kvs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .kvs .card { padding: 14px; }
-
-    footer { border-top: 1px solid #e6eaed; background: #ffffff; margin-top: 16px; }
-    .footer-inner { padding: 18px 0; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
-    .footer-nav { display: flex; gap: 12px; flex-wrap: wrap; }
-    .lastmod { color: var(--muted); font-size: 14px; }
-
-    .cookie { position: fixed; z-index: 200; right: 16px; bottom: 16px; max-width: 520px; background: #ffffff; border: 1px solid #e6eaed; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); padding: 14px; }
-    .cookie h3 { margin: 0 0 6px; font-size: 16px; color: var(--qgis-green-900); }
-    .cookie p { margin: 0 0 12px; color: var(--muted); }
-    .cookie .row { display: flex; gap: 10px; flex-wrap: wrap; }
-    .cookie .btn { padding: 10px 12px; }
-    .cookie [data-close] { margin-left: auto; background: #f6f8f9; border-color: #e6eaed; color: #44525a; }
-    .cookie .accept { background: var(--qgis-green); color: #fff; }
-    .cookie .decline { background: #ffffff; border-color: #e6eaed; color: #374047; }
-
-    @media (max-width: 980px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: repeat(2, 1fr); }
-      .kvs { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 720px) {
-      .burger { display: inline-flex; }
-      nav ul { display: none; }
-      nav ul.open { display: grid; grid-template-columns: 1fr; gap: 6px; padding-top: 10px; }
-      .list { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: 1fr; }
-    }
-  </style>
-  <!-- GA4 base + Consent Mode (default denied) -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('consent', 'default', { 'analytics_storage': 'denied' });
-  </script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF4WXW2W3V"></script>
-  <script>
-    gtag('js', new Date());
-    gtag('config', 'G-SF4WXW2W3V');
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebPage",
-        "@id": "https://qgis-windows.github.io/system-requirements.html#webpage",
-        "url": "https://qgis-windows.github.io/system-requirements.html",
-        "name": "QGIS for Windows — System Requirements & Performance Tips",
-        "isPartOf": { "@id": "https://qgis-windows.github.io/#website" },
-        "about": { "@id": "https://qgis-windows.github.io/#software" },
-        "description": "System requirements for QGIS on Windows and practical performance tips.",
-        "inLanguage": "en-US",
-        "breadcrumb": {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {"@type":"ListItem","position":1,"name":"Home","item":"https://qgis-windows.github.io/"},
-            {"@type":"ListItem","position":2,"name":"System Requirements","item":"https://qgis-windows.github.io/system-requirements.html"}
-          ]
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {"@type":"Question","name":"What are the minimum specs for QGIS on Windows?","acceptedAnswer":{"@type":"Answer","text":"Minimum: 64‑bit Windows 10/11, 2 CPU cores, 4 GB RAM, ~2–4 GB free disk (more for data), integrated or discrete GPU with updated drivers, 1366×768 display, internet for installation."}},
-          {"@type":"Question","name":"What specs are recommended?","acceptedAnswer":{"@type":"Answer","text":"Recommended: 4+ CPU cores, 8–16 GB RAM, SSD storage, Full HD or higher display, current graphics drivers, stable internet, Administrator rights for install."}},
-          {"@type":"Question","name":"How can I speed up QGIS?","acceptedAnswer":{"@type":"Answer","text":"Use SSD, keep layers indexed, simplify styles and labels, cache tiles, prefer efficient formats (GPKG/GeoPackage), and keep GPU drivers up to date."}}
-        ]
-      },
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://qgis-windows.github.io/#software",
-        "name": "QGIS for Windows",
-        "applicationCategory": ["GeographicInformationSystem", "GIS Application"],
-        "operatingSystem": "Windows 10/11 (64-bit)",
-        "offers": {"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},
-        "downloadUrl": "https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe",
-        "url": "https://qgis-windows.github.io/"
-      }
-    ]
-  }
-  </script>
-</head>
-<body>
-  <a class="sr-only" href="#main">Skip to content</a>
-
-  <!-- SVG Sprite -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden">
-    <symbol id="i-download" viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14a1 1 0 0 0 0-2H5a1 1 0 0 0 0 2Zm7-3a1 1 0 0 0 1-1v-6h2.59a1 1 0 0 0 .7-1.71l-4.59-4.59a1 1 0 0 0-1.41 0L6.7 8.29A1 1 0 0 0 7.41 10H10v6a1 1 0 0 0 1 1h1Z"/></symbol>
-    <symbol id="i-windows" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5L11 4v7H3V5.5Zm0 12V13h8v7l-8-1.5Zm10-14.2L21 3v8h-8V3.3Zm8 17.4l-8 1.2V13h8v7.7Z"/></symbol>
-    <symbol id="i-info" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm0 5a1.25 1.25 0 1 1 0 2.5A1.25 1.25 0 0 1 12 7Zm1.5 10h-3v-1.5h1V12h-1V10.5h2a1 1 0 0 1 1 1V15.5h1V17Z"/></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol>
-    <symbol id="i-menu" viewBox="0 0 24 24" fill="currentColor"><path d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"/></symbol>
-    <symbol id="i-close" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 5.71 12 12l6.3 6.29-1.41 1.42L10.59 13.4l-6.3 6.3-1.41-1.42L9.17 12 2.88 5.71 4.3 4.29 10.59 10.6l6.3-6.3Z"/></symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4 10.59 5.41 16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8-8-8Z"/></symbol>
-  </svg>
-
-  <header>
-    <div class="container nav" role="navigation" aria-label="Main">
-      <a href="/" class="brand" aria-label="Home">
-        <svg aria-hidden="true"><use href="#i-windows"></use></svg>
-        <span>QGIS for Windows</span>
-      </a>
-      <button class="burger" aria-controls="mainmenu" aria-expanded="false" id="burger"><svg width="20" height="20" aria-hidden="true"><use href="#i-menu"></use></svg><span class="sr-only">Menu</span></button>
-      <nav>
-        <ul id="mainmenu">
-          <li><a href="/install-windows.html">Install Guide</a></li>
-          <li><a href="/system-requirements.html" aria-current="page">System Requirements</a></li>
-          <li><a href="/ltr-vs-latest.html">LTR vs Latest</a></li>
-          <li><a href="/msi-vs-osgeo4w.html">MSI vs OSGeo4W</a></li>
-          <li><a href="/troubleshooting.html">Troubleshooting</a></li>
-          <li><a href="/plugins-windows.html">Plugins</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="hero">
-      <div class="container hero-inner">
-        <div>
-          <span class="pill">
-            <svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg>
-            Quick requirements
-          </span>
-          <h1>System Requirements & Performance Tips</h1>
-          <p class="lead">Check if your Windows PC is ready for QGIS and learn easy ways to keep maps fast and responsive.</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="https://www2.softwareportal.store/zjxKPfIK" data-download="true" data-file-name="osgeo4w-setup.exe" data-file-url="https://download.osgeo.org/osgeo4w/v2/osgeo4w-setup.exe" aria-label="Download OSGeo4W Network Installer (official)">
-              <svg width="20" height="20" aria-hidden="true"><use href="#i-download"></use></svg>
-              Download for Windows (OSGeo4W)
-            </a>
-            <a class="btn btn-ghost" href="/install-windows.html">
-              <svg width="20" height="20" aria-hidden="true"><use href="#i-arrow"></use></svg>
-              Follow the Install Guide
-            </a>
-          </div>
-        </div>
-        <div>
-          <div class="card">
-            <h3>At a glance</h3>
-            <ul class="list">
-              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg> Windows 10/11 (64‑bit)</li>
-              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg> 4 GB RAM minimum (8–16 GB recommended)</li>
-              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg> SSD strongly recommended</li>
-              <li><svg width="18" height="18" aria-hidden="true"><use href="#i-check"></use></svg> Updated graphics drivers</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Minimum vs Recommended specs</h2>
-        <div class="kvs">
-          <div class="card">
-            <h3>Minimum</h3>
-            <ul class="list">
-              <li><strong>OS:</strong> Windows 10/11 (64‑bit)</li>
-              <li><strong>CPU:</strong> 2 cores</li>
-              <li><strong>RAM:</strong> 4 GB</li>
-              <li><strong>Storage:</strong> 2–4 GB free (app), more for data</li>
-              <li><strong>GPU:</strong> Integrated/Discrete with current drivers</li>
-              <li><strong>Display:</strong> 1366×768</li>
-              <li><strong>Network:</strong> Internet for OSGeo4W install</li>
-              <li><strong>Permissions:</strong> Administrator for install</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Recommended</h3>
-            <ul class="list">
-              <li><strong>CPU:</strong> 4+ cores</li>
-              <li><strong>RAM:</strong> 8–16 GB (or more for large rasters)</li>
-              <li><strong>Storage:</strong> SSD for app and projects</li>
-              <li><strong>Display:</strong> Full HD (1920×1080) or higher</li>
-              <li><strong>GPU:</strong> Current drivers; enable hardware acceleration if supported</li>
-              <li><strong>Backups:</strong> External or cloud for projects/data</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Performance tips</h2>
-        <div class="cards">
-          <div class="card">
-            <h3>Use efficient formats</h3>
-            <p>Prefer GeoPackage (GPKG) or GeoTIFF over many small Shapefiles. Keep attribute indexes for fields you filter or join.</p>
-          </div>
-          <div class="card">
-            <h3>Optimize styles & labels</h3>
-            <p>Reduce complex symbol layers, simplify geometry while editing, and avoid heavy label rules on very large datasets.</p>
-          </div>
-          <div class="card">
-            <h3>Cache tiles & data</h3>
-            <p>Enable tile caching for web basemaps and store working data on an SSD rather than a network drive.</p>
-          </div>
-          <div class="card">
-            <h3>Keep drivers current</h3>
-            <p>Update your GPU drivers. Out‑of‑date drivers can slow rendering or cause glitches.</p>
-          </div>
-          <div class="card">
-            <h3>Project housekeeping</h3>
-            <p>Turn off layers you don't need, use scale‑based rendering, and keep CRS definitions consistent across layers.</p>
-          </div>
-          <div class="card">
-            <h3>Avoid bottlenecks</h3>
-            <p>Large network shares, real‑time antivirus scans on project folders, and huge unindexed tables will slow you down.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Related guidance</h2>
-        <ul class="list">
-          <li><a href="/install-windows.html">Install QGIS on Windows (Step‑by‑Step)</a></li>
-          <li><a href="/ltr-vs-latest.html">QGIS LTR vs Latest — which to choose?</a></li>
-          <li><a href="/troubleshooting.html">Fix common install and startup errors</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" aria-label="FAQ">
-      <div class="container">
-        <h2 class="section-title">FAQ</h2>
-        <details>
-          <summary>Will QGIS run on older 64‑bit hardware?</summary>
-          <p>Yes, but performance may be limited. Ensure enough RAM and consider lighter datasets. SSDs help a lot on older systems.</p>
-        </details>
-        <details>
-          <summary>Does QGIS need a dedicated GPU?</summary>
-          <p>No, but a dedicated GPU with current drivers improves rendering. Integrated GPUs work for most 2D maps.</p>
-        </details>
-        <details>
-          <summary>Why is map rendering slow?</summary>
-          <p>Common reasons: huge unindexed layers, complex symbology/labels, slow network drives, or antivirus scanning. See tips above or visit <a href="/troubleshooting.html">Troubleshooting</a>.</p>
-        </details>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div class="lastmod" aria-live="polite">Last updated: <time id="lastmod" datetime=""></time></div>
-      <nav class="footer-nav" aria-label="Footer">
-        <a href="/">Download</a>
-        <a href="/install-windows.html">Install</a>
-        <a href="/ltr-vs-latest.html">Versions</a>
-        <a href="/msi-vs-osgeo4w.html">Installers</a>
-        <a href="/troubleshooting.html">Troubleshooting</a>
-        <a href="/plugins-windows.html">Plugins</a>
-      </nav>
-    </div>
-  </footer>
-
-  <!-- Cookie banner -->
-  <div class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent" hidden>
-    <button class="btn" data-close aria-label="Close cookie banner"><svg width="18" height="18" aria-hidden="true"><use href="#i-close"></use></svg></button>
-    <h3>Cookies & analytics</h3>
-    <p>We use Google Analytics (GA4) to improve this site. You can accept or decline analytics cookies. The download link remains available either way.</p>
-    <div class="row">
-      <button class="btn accept" id="cookie-accept">Accept</button>
-      <button class="btn decline" id="cookie-decline">Decline</button>
-    </div>
-  </div>
-
-  <script>
-    (function() {
-      const $ = (sel, ctx=document) => ctx.querySelector(sel);
-      const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
-
-      // Mobile menu
-      const burger = $('#burger');
-      const menu = $('#mainmenu');
-      if (burger && menu) {
-        burger.addEventListener('click', () => {
-          menu.classList.toggle('open');
-          const expanded = burger.getAttribute('aria-expanded') === 'true';
-          burger.setAttribute('aria-expanded', String(!expanded));
-        });
-      }
-
-      // Last modified
-      const last = new Date(document.lastModified);
-      const lastISO = last.toISOString();
-      const lastHuman = last.toLocaleString(undefined, { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' });
-      const lastEl = $('#lastmod');
-      const meta = $('#meta-lastmod');
-      if (lastEl) { lastEl.textContent = lastHuman; lastEl.setAttribute('datetime', lastISO); }
-      if (meta) { meta.setAttribute('content', lastISO); }
-
-      // Cookie consent
-      const COOKIE_KEY = 'ga_consent_v1';
-      const state = localStorage.getItem(COOKIE_KEY);
-      const banner = $('#cookie');
-      const acceptBtn = $('#cookie-accept');
-      const declineBtn = $('#cookie-decline');
-      const closeBtn = banner ? banner.querySelector('[data-close]') : null;
-
-      function setConsent(granted) {
-        gtag('consent', 'update', { 'analytics_storage': granted ? 'granted' : 'denied' });
-        localStorage.setItem(COOKIE_KEY, granted ? 'accepted' : 'declined');
-      }
-
-      function ensureBanner() {
-        if (!banner) return;
-        if (!state) {
-          banner.hidden = false;
-        } else {
-          setConsent(state === 'accepted');
-        }
-      }
-
-      ensureBanner();
-
-      acceptBtn && acceptBtn.addEventListener('click', () => {
-        setConsent(true);
-        banner.hidden = true;
-      });
-      declineBtn && declineBtn.addEventListener('click', () => {
-        setConsent(false);
-        banner.hidden = true;
-      });
-      closeBtn && closeBtn.addEventListener('click', () => {
-        setConsent(false);
-        banner.hidden = true;
-      });
-
-      // Download tracking — only fires if consent granted
-      function canTrack() { try { return localStorage.getItem(COOKIE_KEY) === 'accepted'; } catch(e) { return false; } }
-      function trackDownload(name, url) {
-        if (!canTrack()) return;
-        gtag('event', 'file_download', {
-          event_category: 'downloads',
-          event_label: name,
-          file_url: url
-        });
-      }
-
-      $$('a[data-download="true"]').forEach(a => {
-        a.addEventListener('click', () => {
-          const name = a.getAttribute('data-file-name') || 'download.file';
-          const url = a.getAttribute('data-file-url') || a.href;
-          trackDownload(name, url);
-        });
-      });
-    })();
-  </script>
-</body>
-</html>
+</div></div>
+<div class="wrap"><div class="content-layout">
+<main><div class="section"><span class="section-label">System requirements</span><h2>QGIS system requirements for Windows</h2>
+<div class="tbl-wrap"><table><thead><tr><th>Component</th><th>Minimum</th><th>Recommended</th><th>For large datasets</th></tr></thead><tbody>
+<tr><td><strong>OS</strong></td><td>Windows 10 64-bit</td><td>Windows 11 64-bit</td><td>Windows 11</td></tr>
+<tr><td><strong>RAM</strong></td><td>4 GB</td><td>8 GB</td><td>16 GB or more</td></tr>
+<tr><td><strong>CPU</strong></td><td>Any x64 processor</td><td>4-core, 2.5 GHz+</td><td>8-core, 3 GHz+</td></tr>
+<tr><td><strong>Storage</strong></td><td>2 GB (QGIS only)</td><td>10 GB SSD</td><td>SSD + separate data drive</td></tr>
+<tr><td><strong>GPU</strong></td><td>Any (OpenGL 2.0)</td><td>Dedicated GPU</td><td>Dedicated GPU with 4+ GB VRAM</td></tr>
+<tr><td><strong>Display</strong></td><td>1024 &times; 768</td><td>1920 &times; 1080</td><td>4K display</td></tr>
+</tbody></table></div>
+</div>
+<div class="section"><span class="section-label">RAM guide</span><h2>How much RAM does QGIS need?</h2>
+<div class="tbl-wrap"><table><thead><tr><th>RAM</th><th>What you can do</th></tr></thead><tbody>
+<tr><td><strong>4 GB</strong></td><td>Basic vector editing, small datasets, learning QGIS</td></tr>
+<tr><td><strong>8 GB</strong></td><td class="td-ok">Standard GIS work, medium vector/raster datasets, most users</td></tr>
+<tr><td><strong>16 GB</strong></td><td>Large rasters, complex processing, multiple large layers</td></tr>
+<tr><td><strong>32 GB+</strong></td><td>National-scale datasets, heavy spatial analysis, remote sensing</td></tr>
+</tbody></table></div>
+<div class="callout callout-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>QGIS uses RAM proportional to the data loaded. The recommended 8 GB covers typical workflows. If you work with large rasters (satellite imagery, DEMs) or complex processing chains, 16 GB is the practical minimum.</span></div>
+</div>
+<div class="section"><span class="section-label">Performance tips</span><h2>Improve QGIS performance on Windows</h2><ul>
+<li><strong>Use an SSD</strong> &mdash; the biggest single improvement for GIS work is fast storage. Loading large shapefiles from an SSD vs HDD can be 5-10x faster.</li>
+<li><strong>Enable render caching</strong> &mdash; Settings &rarr; Options &rarr; Rendering &rarr; check <strong>Enable feature simplification by default for newly added layers</strong></li>
+<li><strong>Limit simultaneous renders</strong> &mdash; Settings &rarr; Options &rarr; Rendering &rarr; reduce <strong>Max cores to use</strong> to half your CPU cores</li>
+<li><strong>Use GeoPackage over Shapefile</strong> &mdash; GeoPackage (.gpkg) is faster for most operations than the legacy Shapefile format</li>
+<li><strong>Build spatial indexes</strong> &mdash; right-click a layer &rarr; Properties &rarr; Source &rarr; Create Spatial Index for large vector datasets</li>
+<li><strong>Reproject to your working CRS</strong> &mdash; on-the-fly reprojection slows rendering. Reproject data to your project CRS once using Processing &rarr; Reproject Layer</li>
+</ul></div>
+<div class="section"><span class="section-label">FAQ</span><h2>Requirements questions</h2><div class="faq">
+<div class="faq-item"><details><summary>QGIS minimum system requirements 2026</summary><div class="faq-ans">Official minimum: Windows 10 64-bit, 4 GB RAM, 2 GB disk space, OpenGL 2.0 GPU. In practice, 4 GB RAM is barely usable for real work &mdash; 8 GB is the practical minimum for comfortable use.</div></details></div>
+<div class="faq-item"><details><summary>Does QGIS work on 32-bit Windows?</summary><div class="faq-ans">No. QGIS 3.x requires 64-bit Windows. The last version with 32-bit support was QGIS 2.x, which is no longer maintained. You need Windows 10 or 11 64-bit.</div></details></div>
+<div class="faq-item"><details><summary>QGIS recommended RAM for raster analysis</summary><div class="faq-ans">For raster analysis (DEM processing, satellite imagery, raster algebra), 16 GB RAM is recommended. Some operations load entire rasters into memory. If you see "out of memory" errors with 8 GB, upgrade to 16 GB or process data in tiles using the Raster Analysis tools.</div></details></div>
+<div class="faq-item"><details><summary>Does QGIS use the GPU?</summary><div class="faq-ans">QGIS uses the GPU for map rendering (via OpenGL) and can accelerate some processing tasks. A dedicated GPU helps with smooth map rendering at high zoom levels and with 3D views. However, most analytical processing uses the CPU.</div></details></div>
+</div></div>
+<div class="cta-banner"><div><h2>Ready to install?</h2><p>Full step-by-step install guide for Windows.</p></div><a href="/install-windows.html" class="btn-white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Install guide</a></div>
+<div style="margin-bottom:24px"><span class="section-label">Related guides</span><div class="rel-grid"><a href="/install-windows.html" class="rel-card"><div class="rel-title">Install guide &rarr;</div><div class="rel-sub">install QGIS</div></a><a href="/qgis-slow-windows.html" class="rel-card"><div class="rel-title">QGIS slow &rarr;</div><div class="rel-sub">performance tips</div></a><a href="/ltr-vs-latest.html" class="rel-card"><div class="rel-title">LTR vs Latest &rarr;</div><div class="rel-sub">which version</div></a></div></div></main>
+<aside class="content-sidebar"><div class="sb-ver"><div class="sb-ver-label">LTR version</div><div class="sb-ver-val">3.40.5</div><div class="sb-ver-sub">Windows 10 / 11</div></div><div class="sb-card"><div class="sb-card-title">Download</div><ul class="sb-links"><li><a href="/index.html">Download QGIS</a></li><li><a href="/qgis-ltr-download.html">Download LTR</a></li><li><a href="/qgis-latest-version.html">Download Latest</a></li><li><a href="/qgis-standalone-installer.html">Standalone installer</a></li><li><a href="/osgeo4w-windows.html">OSGeo4W guide</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Install & versions</div><ul class="sb-links"><li><a href="/install-windows.html">Install guide</a></li><li><a href="/ltr-vs-latest.html">LTR vs Latest</a></li><li><a href="/msi-vs-osgeo4w.html">MSI vs OSGeo4W</a></li><li><a href="/system-requirements.html" class="cur">System requirements</a></li><li><a href="/qgis-update-windows.html">Update QGIS</a></li><li><a href="/qgis-uninstall-windows.html">Uninstall</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Fix & learn</div><ul class="sb-links"><li><a href="/troubleshooting.html">Troubleshooting</a></li><li><a href="/qgis-not-opening.html">QGIS not opening</a></li><li><a href="/qgis-python-error.html">Python errors</a></li><li><a href="/qgis-crash-windows.html">QGIS crashes</a></li><li><a href="/qgis-slow-windows.html">QGIS slow</a></li><li><a href="/plugins-windows.html">Plugins</a></li><li><a href="/qgis-projection-crs.html">CRS & projections</a></li><li><a href="/qgis-vs-arcgis.html">QGIS vs ArcGIS</a></li><li><a href="/qgis-windows-faq.html">FAQ</a></li></ul></div></aside>
+</div></div>
+<footer class="site-footer"><div class="wrap"><div class="footer-inner"><div><div class="footer-logo"><div class="footer-logo-mark">Q</div><span class="footer-logo-name">QGIS for Windows</span></div><p class="footer-tagline">Unofficial Windows guide for QGIS &mdash; install, configure, fix errors.</p></div><div><div class="footer-col-title">Install</div><ul class="footer-links"><li><a href="/index.html">Download QGIS</a></li><li><a href="/install-windows.html">Install guide</a></li><li><a href="/qgis-standalone-installer.html">Standalone MSI</a></li><li><a href="/osgeo4w-windows.html">OSGeo4W guide</a></li><li><a href="/qgis-update-windows.html">Update QGIS</a></li></ul></div><div><div class="footer-col-title">Versions</div><ul class="footer-links"><li><a href="/ltr-vs-latest.html">LTR vs Latest</a></li><li><a href="/msi-vs-osgeo4w.html">MSI vs OSGeo4W</a></li><li><a href="/qgis-ltr-download.html">Download LTR</a></li><li><a href="/qgis-latest-version.html">Latest version</a></li><li><a href="/system-requirements.html">System requirements</a></li></ul></div><div><div class="footer-col-title">Fix & learn</div><ul class="footer-links"><li><a href="/troubleshooting.html">Troubleshooting</a></li><li><a href="/qgis-not-opening.html">QGIS not opening</a></li><li><a href="/qgis-python-error.html">Python errors</a></li><li><a href="/plugins-windows.html">Plugins</a></li><li><a href="/qgis-windows-faq.html">FAQ</a></li></ul></div></div><div class="footer-bottom"><p>Not affiliated with the QGIS project or OSGeo. Unofficial community guide.</p><p><strong>Affiliate disclosure:</strong> Download links may be partner links.</p></div></div></footer><div class="cookie-bar" id="cookieBar" style="display:none"><p>We use Google Analytics for anonymous traffic data. <a href="/qgis-windows-faq.html">Privacy</a></p><div class="cookie-btns"><button class="cookie-accept" id="cookieAccept">Accept</button><button class="cookie-decline" id="cookieDecline">Decline</button></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-SF4WXW2W3V"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("consent","default",{analytics_storage:"denied",ad_storage:"denied"});gtag("js",new Date());gtag("config","G-SF4WXW2W3V",{anonymize_ip:true,send_page_view:false});function grantGA(){gtag("consent","update",{analytics_storage:"granted"});gtag("event","page_view",{page_location:location.href,page_title:document.title})}document.addEventListener("DOMContentLoaded",function(){var bar=document.getElementById("cookieBar");var c=localStorage.getItem("qg_consent");if(!c){bar.style.display="flex"}else if(c==="1"){grantGA()}document.getElementById("cookieAccept").addEventListener("click",function(){localStorage.setItem("qg_consent","1");grantGA();bar.style.display="none"});document.getElementById("cookieDecline").addEventListener("click",function(){localStorage.setItem("qg_consent","0");bar.style.display="none"});});</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"QGIS System Requirements for Windows","description":"Minimum and recommended system requirements for QGIS on Windows 10 and 11.","url":"https://qgis-windows.github.io/system-requirements.html"}</script>
+<script>var el=document.getElementById("nl-req");if(el)el.classList.add("active");</script>
+</body></html>
